@@ -1,5 +1,7 @@
 /* eslint-disable prettier/prettier */
-import { Navbar } from "@/src/components/navbar";
+
+import { Navbar } from "@/src/components/modules/UI/navbar";
+
 
 export default function layout({
   children,
@@ -8,7 +10,7 @@ export default function layout({
 }) {
   return (
     <div className="relative flex flex-col h-screen">
-    <Navbar />
+    <Navbar/>
     <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
       {children}
     </main>
