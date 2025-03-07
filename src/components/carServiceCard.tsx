@@ -1,34 +1,36 @@
 /* eslint-disable prettier/prettier */
-"use client"
 
-import {Card, CardHeader, CardBody, Image} from "@heroui/react";
+"use client";
+
+ import {Card, CardHeader, CardBody, Image, CardFooter, Button} from "@heroui/react";
 
 import { TService } from "../types/carServiceTypes";
-import { Button } from "@heroui/button";
 
-export default function  CarServiceCard({service}:{service:TService}) {
+const CarServiceCard = ({service}:{service:TService}) => {
   return (
-    <Card className="py-4 gap-4 my-5 mx-5 ">
-      <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-      <div className=" flex justify-between items-center w-full">
-      <h4 className="font-bold text-large">{service?.name}</h4>
-      <Button className=" text-tiny">Details</Button>
-      </div>
-       
-       <p className="text-tiny uppercase font-bold">{service?.price}$</p>
-      
-    
-        <small className="text-default-500">{service?.duration}min</small>
-       
+    <Card className="w-full max-w-[320px] p-3 shadow-lg hover:shadow-xl transition-shadow">
+      <CardHeader className="pb-0">
+        <h2 className="text-xl font-semibold">{service.name}</h2>
       </CardHeader>
-      <CardBody className="overflow-visible py-2 ">
+
+      <CardBody>
         <Image
-          alt="Card background"
-          className="object-cover rounded-xl"
+          alt={service.name}
+          className="w-full h-[180px] object-cover rounded-lg"
           src="https://heroui.com/images/hero-card-complete.jpeg"
-          
         />
+        <p className="text-gray-600 mt-2">{service.description}</p>
       </CardBody>
+
+      <CardFooter className="flex justify-between items-center">
+        <p className="font-bold text-blue-500">${service.price}</p>
+        <Button className="bg-transparent hover:bg-slate-800 hover:text-white hover:transition-all hover:duration-1000 ease-in-out" radius="full" size="sm"  variant="bordered"   >
+          Book Now
+        </Button>
+      </CardFooter>
     </Card>
   );
-}
+};
+
+export default CarServiceCard;
+
