@@ -1,29 +1,34 @@
 /* eslint-disable prettier/prettier */
 "use client"
-import {Card, CardFooter, Image, Button} from "@heroui/react";
 
-export default function CarServiceCard({service}) {
+import {Card, CardHeader, CardBody, Image} from "@heroui/react";
+
+import { TService } from "../types/carServiceTypes";
+import { Button } from "@heroui/button";
+
+export default function  CarServiceCard({service}:{service:TService}) {
   return (
-    <Card isFooterBlurred className="border-none w-[200] my-5" radius="lg">
-      <Image
-        alt="Woman listing to music"
-        className="object-cover"
-        height={200}
-        src="https://heroui.com/images/hero-card.jpeg"
-        width={200}
-      />
-      <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
-        <p className="text-tiny text-white/80">{service.name}</p>
-        <Button
-          className="text-tiny text-white bg-black/20"
-          color="default"
-          radius="lg"
-          size="sm"
-          variant="flat"
-        >
-        Book
-        </Button>
-      </CardFooter>
+    <Card className="py-4 gap-4 my-5 mx-5 ">
+      <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+      <div className=" flex justify-between items-center w-full">
+      <h4 className="font-bold text-large">{service?.name}</h4>
+      <Button className=" text-tiny">Details</Button>
+      </div>
+       
+       <p className="text-tiny uppercase font-bold">{service?.price}$</p>
+      
+    
+        <small className="text-default-500">{service?.duration}min</small>
+       
+      </CardHeader>
+      <CardBody className="overflow-visible py-2 ">
+        <Image
+          alt="Card background"
+          className="object-cover rounded-xl"
+          src="https://heroui.com/images/hero-card-complete.jpeg"
+          
+        />
+      </CardBody>
     </Card>
   );
 }
