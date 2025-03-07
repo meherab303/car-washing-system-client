@@ -1,12 +1,10 @@
 /* eslint-disable prettier/prettier */
-
-
-const bookingPage = () => {
+const services = () => {
     return (
         <div>
-            Bookings
+            services
         </div>
     );
 };
 
-export default bookingPage;
+export default services;
