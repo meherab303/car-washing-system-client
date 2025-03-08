@@ -11,7 +11,7 @@ export default async function Servicesss() {
  
 
   return (
-    <section >
+    <section className="mx-auto" >
         <div className="grid grid-cols-3 gap-5 my-5">
         {services.map((service:TService) => (
         <CarServiceCard key={service._id} service={service} />
