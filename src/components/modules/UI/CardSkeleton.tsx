@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Card } from "@heroui/card";
 import { Skeleton } from "@heroui/skeleton";
 

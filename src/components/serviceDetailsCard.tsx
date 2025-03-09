@@ -28,10 +28,10 @@ const ServiceDetailsCard = (service:{service:TService}) => {
       
         {/* Right: Service Details */}
         <CardBody className="w-full md:w-1/2 p-6 flex flex-col justify-center">
-          <h2 className="text-2xl font-bold text-gray-900">{name}</h2>
-          <p className="text-gray-600 mt-2">{description}</p>
+          <h2 className="text-2xl font-bold text-default-800">{name}</h2>
+          <p className="text-default-600 mt-2">{description}</p>
           <p className="text-lg font-semibold text-blue-500 mt-2">Price: ${price}</p>
-          <p className="text-sm text-gray-500">Duration: {duration} mins</p>
+          <p className="text-sm text-default-600">Duration: {duration} mins</p>
               {/* Time Slot Selection */}
                   {/* <AvailableSlots service={service} /> */}
          
