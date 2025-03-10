@@ -9,8 +9,11 @@ import ServiceDetailsCard from "@/src/components/serviceDetailsCard";
 
 
 
+
 export default async function ServiceDetails({ params }: { params: { serviceDetails: string } }) {
-    const {data}= await getSingleCarService(params.serviceDetails);
+
+    const {data}= await getSingleCarService((await params).serviceDetails);
+    console.log(data)
     
   
     if (!data) return notFound(); // Show 404 if service not found
@@ -18,6 +21,7 @@ export default async function ServiceDetails({ params }: { params: { serviceDeta
     return (
       <div className="max-w-2xl mx-auto p-6">
      <ServiceDetailsCard service={data}/>
+    
       </div>
     );
   }

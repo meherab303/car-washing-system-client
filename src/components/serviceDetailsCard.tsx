@@ -2,11 +2,13 @@
 "use client"
 import { Button, Card, CardBody, Image } from '@heroui/react';
 
-import { TService } from '../types/carServiceTypes';
+import { TService } from '../types/carServiceTypes'; 
+
+import AvailableSlots from './modules/service/AvailableSlots';
 
 const ServiceDetailsCard = (service:{service:TService}) => {
     
-    const {name,description,duration,price,_id}=service?.service
+    const {name,description,duration,price,_id}=service.service
 
 
     return (
@@ -33,7 +35,9 @@ const ServiceDetailsCard = (service:{service:TService}) => {
           <p className="text-lg font-semibold text-blue-500 mt-2">Price: ${price}</p>
           <p className="text-sm text-default-600">Duration: {duration} mins</p>
               {/* Time Slot Selection */}
-                  {/* <AvailableSlots service={service} /> */}
+           <div >
+           <AvailableSlots serviceId={_id} />
+           </div>
          
           <Button className="mt-4 w-full bg-blue-600 text-white font-semibold hover:bg-blue-700 transition">
             Book This Service
