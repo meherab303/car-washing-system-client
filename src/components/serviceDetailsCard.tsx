@@ -8,7 +8,7 @@ import AvailableSlots from './modules/service/AvailableSlots';
 
 const ServiceDetailsCard = (service:{service:TService}) => {
     
-    const {name,description,duration,price,_id}=service.service
+    const {name,description,duration,price,_id=''}=service?.service 
 
 
     return (
