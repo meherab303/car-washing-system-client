@@ -2,18 +2,26 @@
 
 import CarServiceCard from "@/src/components/carServiceCard";
 import Container from "@/src/components/modules/UI/container";
+import envConfig from "@/src/config/envConfig";
 import getCarService from "@/src/services/carServices";
 import { TService } from "@/src/types/carServiceTypes";
 
 
+
 export default async function Servicesss() {
     const {data:services}=await getCarService()
+    console.log(services)
 
     if(!services){
       throw new Error("no service found ")
     }
 
- 
+     
+
+
+
+  
+  
 
   return (
     <Container >

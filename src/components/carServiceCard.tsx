@@ -35,7 +35,7 @@ const CarServiceCard = ({ service }: { service: TService }) => {
       <CardFooter className="flex justify-between items-center">
         <p className="font-bold text-blue-500">${price}</p>
         <Button  className="bg-transparent hover:bg-slate-800 hover:text-white" radius="full" size="sm" variant="bordered"  onPress={() => router.push(`/services/${_id}`)} >
-          Book Now
+         Details
         </Button>
       </CardFooter>
     </Card>

@@ -3,12 +3,18 @@
 import { Button, Card, CardBody, Image } from '@heroui/react';
 
 import { TService } from '../types/carServiceTypes'; 
+import { SlotBooking } from '../types/slotBookingTypes';
 
 import AvailableSlots from './modules/service/AvailableSlots';
 
-const ServiceDetailsCard = (service:{service:TService}) => {
+
+
+const ServiceDetailsCard = ({ service, slots }: { service: TService; slots: SlotBooking[] }) => {
     
-    const {name,description,duration,price,_id=''}=service?.service 
+    const {name,description,duration,price}=service
+ 
+    
+     
 
 
     return (
@@ -36,10 +42,10 @@ const ServiceDetailsCard = (service:{service:TService}) => {
           <p className="text-sm text-default-600">Duration: {duration} mins</p>
               {/* Time Slot Selection */}
            <div >
-           <AvailableSlots serviceId={_id} />
+           <AvailableSlots slots={slots} />
            </div>
          
-          <Button className="mt-4 w-full bg-blue-600 text-white font-semibold hover:bg-blue-700 transition">
+          <Button isDisabled={slots.length===0} className="mt-4 w-full bg-blue-600 text-white font-semibold hover:bg-blue-700 transition">
             Book This Service
           </Button>
         </CardBody>

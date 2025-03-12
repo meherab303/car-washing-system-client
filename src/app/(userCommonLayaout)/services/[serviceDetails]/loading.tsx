@@ -25,7 +25,7 @@ export default function Loading() {
             <Skeleton className="h-4 w-5/6 mb-2 rounded" /> {/* Description Line 2 */}
             <Skeleton className="h-4 w-1/2 mb-2 rounded" /> {/* Price */}
             <Skeleton className="h-4 w-1/3 mb-4 rounded" /> {/* Duration */}
-
+            <Skeleton className="h-4 w-1/3 mb-4 rounded" />
             {/* Button Skeleton */}
             <Skeleton className="h-10 w-full rounded-lg" />
           </CardBody>

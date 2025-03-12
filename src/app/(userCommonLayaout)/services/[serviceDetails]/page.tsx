@@ -12,9 +12,16 @@ import envConfig from "@/src/config/envConfig";
 
 
 export default async function ServiceDetails({ params }: { params: { serviceDetails: string } }) {
+  const serviceId=(await params).serviceDetails
 
-    const {data:service}= await getSingleCarService( params.serviceDetails);
-    // console.log(data)
+    const {data:service}= await getSingleCarService( serviceId);
+
+    const res = await fetch(`${envConfig.baseApi}/bookingSlot?serviceId=${serviceId}`);
+    const {data:slots} = await res.json();
+    
+
+    if (!slots) return notFound();
+    
     
     
   
@@ -22,7 +29,7 @@ export default async function ServiceDetails({ params }: { params: { serviceDeta
   
     return (
       <div className="max-w-2xl mx-auto p-6">
-     <ServiceDetailsCard service={service}/>
+     <ServiceDetailsCard service={service} slots={slots}/>
     
       </div>
     );
