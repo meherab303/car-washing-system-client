@@ -2,7 +2,6 @@
 
 import CarServiceCard from "@/src/components/carServiceCard";
 import Container from "@/src/components/modules/UI/container";
-import envConfig from "@/src/config/envConfig";
 import getCarService from "@/src/services/carServices";
 import { TService } from "@/src/types/carServiceTypes";
 
@@ -10,7 +9,7 @@ import { TService } from "@/src/types/carServiceTypes";
 
 export default async function Servicesss() {
     const {data:services}=await getCarService()
-    console.log(services)
+    
 
     if(!services){
       throw new Error("no service found ")
@@ -25,7 +24,7 @@ export default async function Servicesss() {
 
   return (
     <Container >
-        <div className="grid  grid-cols-3 gap-5 my-5">
+        <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-5 place-items-center">
         {services?.map((service:TService) => (
         <CarServiceCard key={service._id} service={service} />
     ))}

@@ -22,6 +22,7 @@ import {
   Logo,
 } from "@/src/components/icons";
 
+
 export const Navbar = () => {
   const searchInput = (
     <Input
@@ -83,6 +84,7 @@ export const Navbar = () => {
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
         <ThemeSwitch />
         <NavbarMenuToggle />
+        
       </NavbarContent>
 
       <NavbarMenu>

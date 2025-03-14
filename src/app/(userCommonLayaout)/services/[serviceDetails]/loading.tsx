@@ -10,7 +10,7 @@ import { Card, CardBody, Skeleton } from "@heroui/react";
 export default function Loading() {
   return (
   <div className="max-w-2xl mx-auto p-6">
-      <div className="flex gap-5 mt-10">
+      <div className="flex flex-col md:flex-row gap-5 mt-10">
       {/* Skeleton for Image */}
       <div className="w-full md:w-1/2">
         <Skeleton className="w-full h-96 rounded-lg" />

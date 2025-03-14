@@ -23,7 +23,7 @@ export default async function Servicesss() {
           A list of items that have been recently found and reported.
         </p>
       </div>
-        <div className="grid grid-cols-3 gap-5 my-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-5 place-items-center">
         {services.slice(0,3).map((service:TService) => (
         <CarServiceCard key={service._id} service={service} />
     ))}

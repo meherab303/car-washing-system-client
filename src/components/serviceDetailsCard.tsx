@@ -18,7 +18,7 @@ const ServiceDetailsCard = ({ service, slots }: { service: TService; slots: Slot
 
 
     return (
-        <div className='flex gap-5 mt-10 '>
+        <div className='flex flex-col md:flex-row gap-5 mt-10 '>
                <div className="w-full md:w-1/2 ">
           <Image
             alt={name}
@@ -45,7 +45,10 @@ const ServiceDetailsCard = ({ service, slots }: { service: TService; slots: Slot
            <AvailableSlots slots={slots} />
            </div>
          
-          <Button isDisabled={slots.length===0} className="mt-4 w-full bg-blue-600 text-white font-semibold hover:bg-blue-700 transition">
+           <Button className="relative mt-4 w-full bg-blue-700 text-white font-semibold overflow-hidden transition-all duration-900 ease-in-out
+before:absolute before:inset-0 before:bg-gradient-to-r before:from-blue-700 before:to-purple-700 
+before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-900 before:-z-10 
+z-10"  isDisabled={slots.length===0}>
             Book This Service
           </Button>
         </CardBody>
