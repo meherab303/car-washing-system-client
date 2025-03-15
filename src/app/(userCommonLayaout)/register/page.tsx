@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+
 "use client";
 
 import { useForm } from "react-hook-form";
@@ -5,20 +7,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Input, Button, Card, CardBody } from "@nextui-org/react";
 import { motion } from "framer-motion";
+import Link from "next/link";
+
+import { registerSchema } from "@/src/schemas/register.schemas";
 
 // Define validation schema
-const registerSchema = z
-  .object({
-    name: z.string().min(3, "Name must be at least 3 characters"),
-    email: z.string().email("Invalid email address"),
-    password: z.string().min(6, "Password must be at least 6 characters"),
-    confirmPassword: z.string(),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords do not match",
-    path: ["confirmPassword"],
-  });
-
 type RegisterFormData = z.infer<typeof registerSchema>;
 
 const RegisterPage = () => {
@@ -38,25 +31,29 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-900 to-purple-900 p-4">
+    <div className="flex justify-center items-center min-h-screen bg-default-400 p-4">
       <motion.div
+          animate={{ opacity: 1, y: 0 }}
+           className="w-full max-w-md"
         initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
+    
         transition={{ duration: 0.5 }}
-        className="w-full max-w-md"
+       
       >
         <Card className="shadow-2xl bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
           <CardBody>
             <h2 className="text-3xl font-bold text-white text-center mb-6">Create Account</h2>
 
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+            <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} >
               {/* Name Input */}
+              
               <div>
                 <Input
+                className="text-white"
                   label="Full Name"
                   {...register("name")}
                   isInvalid={!!errors.name}
-                  className="text-white"
+                  
                 />
                 {errors.name && <p className="text-red-400 text-sm">{errors.name.message}</p>}
               </div>
@@ -64,22 +61,47 @@ const RegisterPage = () => {
               {/* Email Input */}
               <div>
                 <Input
+                 className="text-white"
                   label="Email"
                   {...register("email")}
                   isInvalid={!!errors.email}
-                  className="text-white"
+                 
                 />
                 {errors.email && <p className="text-red-400 text-sm">{errors.email.message}</p>}
+              </div>
+                {/* Phone Input */}
+                <div>
+                <Input
+                className="text-white"
+                  label="Phone Number"
+                  {...register("phone")}
+                  isInvalid={!!errors.phone}
+                  
+                />
+                {errors.phone && <p className="text-red-400 text-sm">{errors.phone.message}</p>}
+              </div>
+                    {/* Address Input */}
+              <div>
+                <Input
+                  className="text-white"
+                  label="Address"
+                  {...register("address")}
+                  isInvalid={!!errors.address}
+                
+                />
+                {errors.address && <p className="text-red-400 text-sm">{errors.address.message}</p>}
               </div>
 
               {/* Password Input */}
               <div>
                 <Input
+                 className="text-white"
+                 label="Password"
                   type="password"
-                  label="Password"
+                  
                   {...register("password")}
                   isInvalid={!!errors.password}
-                  className="text-white"
+                 
                 />
                 {errors.password && <p className="text-red-400 text-sm">{errors.password.message}</p>}
               </div>
@@ -87,11 +109,13 @@ const RegisterPage = () => {
               {/* Confirm Password Input */}
               <div>
                 <Input
-                  type="password"
+               
+                   className="text-white"
                   label="Confirm Password"
+                     type="password"
                   {...register("confirmPassword")}
                   isInvalid={!!errors.confirmPassword}
-                  className="text-white"
+                 
                 />
                 {errors.confirmPassword && (
                   <p className="text-red-400 text-sm">{errors.confirmPassword.message}</p>
@@ -101,10 +125,10 @@ const RegisterPage = () => {
               {/* Submit Button with Animation */}
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button
-                  type="submit"
-                  color="primary"
-                  isDisabled={isSubmitting}
                   className="w-full font-semibold bg-blue-600 hover:bg-blue-700 transition-all duration-300 text-white py-3 rounded-lg"
+                    color="primary"
+                  isDisabled={isSubmitting}
+                  type="submit"
                 >
                   {isSubmitting ? "Registering..." : "Sign Up"}
                 </Button>
@@ -112,7 +136,7 @@ const RegisterPage = () => {
             </form>
 
             <p className="text-white text-center mt-4 text-sm">
-              Already have an account? <a href="/login" className="text-blue-400 hover:underline">Log in</a>
+              Already have an account? <Link className="text-blue-400 hover:underline" href="/login"  >Log in</Link> 
             </p>
           </CardBody>
         </Card>
