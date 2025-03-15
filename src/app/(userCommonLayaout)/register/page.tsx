@@ -34,16 +34,13 @@ const RegisterPage = () => {
     try {
    
       const userData = { ...data, role: "user" };
-
-
       const result = await createUser(userData) 
-
-      console.log(result,"result")
+      // console.log(result,"result")
 
       if (result.success==true) {
         toast.success("🎉 Registration successful!", {
           position: "top-right",
-          duration:3000// Closes after 3 seconds
+          duration:3000
         });
       }
       else{
@@ -51,9 +48,8 @@ const RegisterPage = () => {
           position: "top-right",
           duration: 3000,
         });
-  
       }
-      // reset();
+      reset();
     } catch (error:any) {
       toast.error( error.message || "Registration failed", {
         position: "top-right",
