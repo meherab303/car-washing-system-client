@@ -8,8 +8,13 @@ import { z } from "zod";
 import { Input, Button, Card, CardBody } from "@nextui-org/react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import toast from 'react-hot-toast';
+
 
 import { registerSchema } from "@/src/schemas/register.schemas";
+import createUser from "@/src/services/createUser";
+
+
 
 // Define validation schema
 type RegisterFormData = z.infer<typeof registerSchema>;
@@ -25,13 +30,43 @@ const RegisterPage = () => {
   });
 
   // Submit Handler
-  const onSubmit = (data: RegisterFormData) => {
-    console.log("Register Data:", data);
-    reset();
+  const onSubmit =async (data: RegisterFormData) => {
+    try {
+   
+      const userData = { ...data, role: "user" };
+
+
+      const result = await createUser(userData) 
+
+      console.log(result,"result")
+
+      if (result.success==true) {
+        toast.success("🎉 Registration successful!", {
+          position: "top-right",
+          duration:3000// Closes after 3 seconds
+        });
+      }
+      else{
+        toast.error(result.errorSource[0].message||"Registration failed", {
+          position: "top-right",
+          duration: 3000,
+        });
+  
+      }
+      // reset();
+    } catch (error:any) {
+      toast.error( error.message || "Registration failed", {
+        position: "top-right",
+        duration: 3000,
+      });
+
+      // console.error("Registration error:", error);
+    }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-default-400 p-4">
+    <div className="flex justify-center items-center min-h-screen bg-default-400 p-4  "
+    style={{ backgroundImage:"linear-gradient(90deg, rgba(0, 0, 0, 0.7), transparent), url('/carwash.jpg')", }}>
       <motion.div
           animate={{ opacity: 1, y: 0 }}
            className="w-full max-w-md"
@@ -42,7 +77,7 @@ const RegisterPage = () => {
       >
         <Card className="shadow-2xl bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
           <CardBody>
-            <h2 className="text-3xl font-bold text-white text-center mb-6">Create Account</h2>
+            <h2 className="text-3xl font-bold text-white text-center mb-6">Create  Account</h2>
 
             <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} >
               {/* Name Input */}

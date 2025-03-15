@@ -6,6 +6,8 @@ import { Providers } from "./providers";
 
 import { siteConfig } from "@/src/config/site";
 import { fontSans } from "@/src/config/fonts";
+import { Toaster } from "react-hot-toast";
+
 
 
 export const metadata: Metadata = {
@@ -40,6 +42,7 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
+        <Toaster/>
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           {children}
         </Providers>
