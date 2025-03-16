@@ -10,11 +10,12 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import toast from "react-hot-toast";
 
-// import { loginSchema } from "@/src/schemas/login.schemas";
-// import loginUser from "@/src/services/loginUser";
+import loginValidationSchema from "@/src/schemas/login.schemas";
+
+
 
 // Define validation schema
-type LoginFormData = z.infer<typeof loginSchema>;
+type LoginFormData = z.infer<typeof loginValidationSchema>;
 
 const LoginPage = () => {
   const {
@@ -23,7 +24,7 @@ const LoginPage = () => {
     formState: { errors, isSubmitting },
     reset,
   } = useForm<LoginFormData>({
-    resolver: zodResolver(),
+    resolver: zodResolver(loginValidationSchema),
   });
 
   // Submit Handler
