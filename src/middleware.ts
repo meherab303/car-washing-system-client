@@ -20,13 +20,7 @@ const roleBasedRoutes = {
 export async function middleware(request: NextRequest) {
     const {pathname}=request.nextUrl
 
-  //  const user = {
-  //     name: "Meherab",
-  //     token: "adsf asda",
-  //     role: "user",
-  //   };
 
-  // // const user = undefined;
   const user =await getCurrentUser();
   console.log(user,'user')
 

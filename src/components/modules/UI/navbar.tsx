@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+
 import {
   Navbar as HeroUINavbar,
   NavbarContent,
@@ -8,9 +9,9 @@ import {
   NavbarItem,
   NavbarMenuItem,
 } from "@heroui/navbar";
-import { Kbd } from "@heroui/kbd";
+
 import { Link } from "@heroui/link";
-import { Input } from "@heroui/input";
+
 import { link as linkStyles } from "@heroui/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
@@ -22,9 +23,14 @@ import {
   Logo,
 } from "@/src/components/icons";
 import NavbarDropdown from "./NavbarDropdown";
+import { getCurrentUser } from "@/src/services/currentUser";
 
 
-export const Navbar = () => {
+
+
+
+export const Navbar =async () => {
+ const user = await getCurrentUser();
 
   return (
     <HeroUINavbar maxWidth="xl" position="sticky">
@@ -60,9 +66,15 @@ export const Navbar = () => {
         <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch />
         </NavbarItem>
-        <NavbarItem className="hidden sm:flex gap-2">
-         <NavbarDropdown/>
-        </NavbarItem>
+        {user?.userEmail ? (
+          <NavbarItem className="hidden sm:flex gap-2">
+            <NavbarDropdown />
+          </NavbarItem>
+        ) : (
+          <NavbarItem className="hidden sm:flex gap-2">
+            <Link href="/login">Login</Link>
+          </NavbarItem>
+        )}
       </NavbarContent>
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">

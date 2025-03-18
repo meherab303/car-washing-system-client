@@ -1,17 +1,31 @@
 /* eslint-disable prettier/prettier */
 "use client";
 
+import { getCurrentUser } from "@/src/services/currentUser";
 import { logout } from "@/src/services/logout";
 import { Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/react";
 import { useRouter } from "next/navigation";
-
+// import { useEffect, useState } from "react";
 
 export default function NavbarDropdown() {
+  // const [user, setUser] = useState(null);
   const router = useRouter();
-  const handleLogout = () => {
-     logout();
-     router.push("/login");
-   
+
+  // // Function to fetch the user data
+  // const fetchUser = async () => {
+  //   const userData = await getCurrentUser();
+    
+  //   setUser(userData); // Update user state
+  // };
+
+  // // Fetch the user data once the component mounts
+  // useEffect(() => {
+  //   fetchUser();
+  // }, []);
+
+  const handleLogout = async () => {
+    await logout();
+    router.push("/login");
   };
 
   const handleNavigation = (pathname: string) => {
@@ -21,23 +35,26 @@ export default function NavbarDropdown() {
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Avatar className="cursor-pointer" name="Joe" />
+        <Avatar className="cursor-pointer" name="joe" />
       </DropdownTrigger>
-      <DropdownMenu aria-label="Static Actions">
-        <DropdownItem key="profile" onPress={() => handleNavigation("/profile")} >
-          Profile
-        </DropdownItem>
-        <DropdownItem key="settings" onPress={() => handleNavigation("/profile/settings")}>
-          Settings
-        </DropdownItem>
-        <DropdownItem
-         key="delete"
-         className="text-danger"
-         color="danger"
-          onPress={()=>handleLogout()}>
-          Logout
-        </DropdownItem>
-      </DropdownMenu>
+     
+        <DropdownMenu aria-label="Static Actions">
+          <DropdownItem key="profile" onPress={() => handleNavigation("/profile")}>
+            Profile
+          </DropdownItem>
+          <DropdownItem key="settings" onPress={() => handleNavigation("/profile/settings")}>
+            Settings
+          </DropdownItem>
+          <DropdownItem
+            key="logout"
+            className="text-danger"
+            color="danger"
+            onPress={handleLogout}
+          >
+            Logout
+          </DropdownItem>
+        </DropdownMenu>
+      
     </Dropdown>
   );
 }

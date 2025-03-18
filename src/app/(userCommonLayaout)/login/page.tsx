@@ -40,9 +40,6 @@ const LoginPage = () => {
     try {
 
       const result = await loginUser(data);
-
-
-      console.log(result,'toejnresult')
       
       if (result.success) {
         toast.success("✅ Login successful!", {
