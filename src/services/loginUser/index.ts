@@ -16,10 +16,11 @@ export const loginUser = async (userData: FieldValues) => {
     });
 
     if (data.success) {
+        const cookieStore= await cookies()
       
-      cookies().set("accessToken", data?.data?.accessToken);
+        cookieStore.set("accessToken", data?.data?.accessToken);
 
-      cookies().set("refreshToken", data?.data?.refreshToken);
+        cookieStore.set("refreshToken", data?.data?.refreshToken);
     }
 
     return data;

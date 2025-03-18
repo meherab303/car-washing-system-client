@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable prettier/prettier */
 
 "use client";
@@ -10,10 +11,12 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import toast from "react-hot-toast";
 
+
 import loginValidationSchema from "@/src/schemas/login.schemas";
 import { loginUser } from "@/src/services/loginUser";
+import { useRouter } from "next/navigation";
 
-import { useRouter } from "next/router";
+
 
 
 
@@ -73,7 +76,7 @@ const LoginPage = () => {
         {/* Left Side - Welcome Message */}
         <div className="w-1/2 bg-blue-500 flex flex-col justify-center items-center text-white p-10 rounded-r-full  ">
           <h2 className="text-3xl font-bold mb-4">Hello, Welcome!</h2>
-          <p className="mb-6">Don't have an account?</p>
+        <p className="mb-6"> Don't have an account?</p>
           <Link href="/register">
             <Button className="bg-white text-blue-500 px-6 py-2 rounded-lg font-semibold shadow-md hover:bg-gray-100 transition-all">Register</Button>
           </Link>

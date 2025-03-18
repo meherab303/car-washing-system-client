@@ -1,12 +1,18 @@
 /* eslint-disable prettier/prettier */
 "use client";
 
+import { logout } from "@/src/services/logout";
 import { Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/react";
 import { useRouter } from "next/navigation";
 
 
 export default function NavbarDropdown() {
   const router = useRouter();
+  const handleLogout = () => {
+     logout();
+     router.push("/login");
+   
+  };
 
   const handleNavigation = (pathname: string) => {
     router.push(pathname);
@@ -24,7 +30,11 @@ export default function NavbarDropdown() {
         <DropdownItem key="settings" onPress={() => handleNavigation("/profile/settings")}>
           Settings
         </DropdownItem>
-        <DropdownItem key="delete" className="text-danger" color="danger">
+        <DropdownItem
+         key="delete"
+         className="text-danger"
+         color="danger"
+          onPress={()=>handleLogout()}>
           Logout
         </DropdownItem>
       </DropdownMenu>
