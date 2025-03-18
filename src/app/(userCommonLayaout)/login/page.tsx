@@ -11,6 +11,9 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 
 import loginValidationSchema from "@/src/schemas/login.schemas";
+import { loginUser } from "@/src/services/loginUser";
+
+import { useRouter } from "next/router";
 
 
 
@@ -18,6 +21,8 @@ import loginValidationSchema from "@/src/schemas/login.schemas";
 type LoginFormData = z.infer<typeof loginValidationSchema>;
 
 const LoginPage = () => {
+ 
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -30,13 +35,18 @@ const LoginPage = () => {
   // Submit Handler
   const onSubmit = async (data: LoginFormData) => {
     try {
+
       const result = await loginUser(data);
+
+
+      console.log(result,'toejnresult')
       
       if (result.success) {
         toast.success("✅ Login successful!", {
           position: "top-right",
           duration: 3000,
         });
+        router.push("/");
       } else {
         toast.error(result.errorSource?.[0]?.message || "Login failed", {
           position: "top-right",
