@@ -1,14 +1,12 @@
 import "@/src/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import clsx from "clsx";
+import { Toaster } from "react-hot-toast";
 
-import { Providers } from "./providers";
+import { Providers } from "../lib/Providers";
 
 import { siteConfig } from "@/src/config/site";
 import { fontSans } from "@/src/config/fonts";
-import { Toaster } from "react-hot-toast";
-
-
 
 export const metadata: Metadata = {
   title: {
@@ -42,7 +40,7 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
-        <Toaster/>
+        <Toaster />
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           {children}
         </Providers>

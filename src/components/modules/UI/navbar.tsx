@@ -18,19 +18,12 @@ import clsx from "clsx";
 
 import { siteConfig } from "@/src/config/site";
 import { ThemeSwitch } from "@/src/components/modules/UI/theme-switch";
-import {
-  SearchIcon,
-  Logo,
-} from "@/src/components/icons";
+import { SearchIcon, Logo } from "@/src/components/icons";
 import NavbarDropdown from "./NavbarDropdown";
 import { getCurrentUser } from "@/src/services/currentUser";
 
-
-
-
-
-export const Navbar =async () => {
- const user = await getCurrentUser();
+export const Navbar = async () => {
+  const user = await getCurrentUser();
 
   return (
     <HeroUINavbar maxWidth="xl" position="sticky">
@@ -80,11 +73,9 @@ export const Navbar =async () => {
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
         <ThemeSwitch />
         <NavbarMenuToggle />
-        
       </NavbarContent>
 
       <NavbarMenu>
-       
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {siteConfig.navMenuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>

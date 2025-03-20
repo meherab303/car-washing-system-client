@@ -2,7 +2,6 @@
 import { Card } from "@heroui/card";
 import { Skeleton } from "@heroui/skeleton";
 
-
 const CardSkeleton = () => {
   return (
     <Card className="h-[300px] w-full rounded-3xl">

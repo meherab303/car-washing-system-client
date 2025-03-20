@@ -1,13 +1,12 @@
 /* eslint-disable prettier/prettier */
-"use client"
+"use client";
 import Link from "next/link";
 import { Button } from "@heroui/react";
 
 import Container from "@/src/components/modules/UI/container";
 import CardSkeleton from "@/src/components/modules/UI/CardSkeleton";
 
-
-export default  function RecentService() {
+export default function RecentService() {
   return (
     <Container>
       <div className="section-title my-8">
@@ -18,7 +17,7 @@ export default  function RecentService() {
       </div>
       <div className="my-8 grid justify-center gap-10 sm:grid-cols-1 md:grid-cols-3">
         {[...Array(9)].map((_, index) => (
-         <CardSkeleton key={index}/>
+          <CardSkeleton key={index} />
         ))}
       </div>
       <div className="flex justify-center">

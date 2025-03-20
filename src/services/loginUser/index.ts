@@ -7,20 +7,22 @@ import { FieldValues } from "react-hook-form";
 import axiosInstance from "@/src/lib/AxiosInstance";
 import envConfig from "@/src/config/envConfig";
 
-
-
 export const loginUser = async (userData: FieldValues) => {
   try {
-    const { data } = await axiosInstance.post(`${envConfig.baseApi}/auth/login`, userData, {
-      withCredentials: true,
-    });
+    const { data } = await axiosInstance.post(
+      `${envConfig.baseApi}/auth/login`,
+      userData,
+      {
+        withCredentials: true,
+      },
+    );
 
     if (data.success) {
-        const cookieStore= await cookies()
-      
-        cookieStore.set("accessToken", data?.data?.accessToken);
+      const cookieStore = await cookies();
 
-        cookieStore.set("refreshToken", data?.data?.refreshToken);
+      cookieStore.set("accessToken", data?.data?.accessToken);
+
+      cookieStore.set("refreshToken", data?.data?.refreshToken);
     }
 
     return data;

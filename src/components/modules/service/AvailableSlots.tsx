@@ -1,20 +1,13 @@
 /* eslint-disable prettier/prettier */
 
-
 import { useEffect, useState } from "react";
 
 import envConfig from "@/src/config/envConfig";
 import { SlotBooking } from "@/src/types/slotBookingTypes";
 
-
-
-
-
-const AvailableSlots = (slots:{slots:SlotBooking[]}) => {
-    
-
-    return (
-<div className="mt-2">
+const AvailableSlots = (slots: { slots: SlotBooking[] }) => {
+  return (
+    <div className="mt-2">
       <h3 className="text-lg font-semibold mb-2">Available Slots</h3>
       <div className="grid grid-cols-3 gap-3">
         {slots.slots.length > 0 ? (
@@ -35,7 +28,7 @@ z-10"
         )}
       </div>
     </div>
-    );
+  );
 };
 
 export default AvailableSlots;
