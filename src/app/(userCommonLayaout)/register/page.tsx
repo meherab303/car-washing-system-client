@@ -7,7 +7,6 @@ import { Input, Button, Card, CardBody } from "@nextui-org/react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-
 import { registerSchema } from "@/src/schemas/register.schemas";
 import { useUserRegistration } from "@/src/hooks/auth.hook"; // Using mutation hook
 
@@ -31,12 +30,12 @@ const RegisterPage = () => {
   const onSubmit = (data: RegisterFormData) => {
     const userData = { ...data, role: "user" };
 
-    handleUserRegistration(userData)
-    reset()
+    handleUserRegistration(userData);
+    reset();
   };
 
   if (isPending) {
-    <p>loading...</p>
+    <p>loading...</p>;
   }
 
   return (

@@ -1,8 +1,6 @@
 /* eslint-disable prettier/prettier */
 
-import { useEffect, useState } from "react";
 
-import envConfig from "@/src/config/envConfig";
 import { SlotBooking } from "@/src/types/slotBookingTypes";
 
 const AvailableSlots = (slots: { slots: SlotBooking[] }) => {

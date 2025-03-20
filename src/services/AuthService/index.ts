@@ -1,10 +1,10 @@
 /* eslint-disable prettier/prettier */
-import envConfig from "@/src/config/envConfig";
 import { cookies } from "next/headers";
-
 import { jwtDecode } from "jwt-decode";
-import axiosInstance from "@/src/lib/AxiosInstance";
 import { FieldValues } from "react-hook-form";
+
+import axiosInstance from "@/src/lib/AxiosInstance";
+import envConfig from "@/src/config/envConfig";
 
 export const createUser = async (userData) => {
   const response = await fetch(`${envConfig.baseApi}/users/signup`, {

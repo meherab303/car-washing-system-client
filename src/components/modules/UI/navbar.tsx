@@ -9,17 +9,16 @@ import {
   NavbarItem,
   NavbarMenuItem,
 } from "@heroui/navbar";
-
 import { Link } from "@heroui/link";
-
 import { link as linkStyles } from "@heroui/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
 
+import NavbarDropdown from "./NavbarDropdown";
+
 import { siteConfig } from "@/src/config/site";
 import { ThemeSwitch } from "@/src/components/modules/UI/theme-switch";
-import { SearchIcon, Logo } from "@/src/components/icons";
-import NavbarDropdown from "./NavbarDropdown";
+import { Logo } from "@/src/components/icons";
 import { getCurrentUser } from "@/src/services/currentUser";
 
 export const Navbar = async () => {

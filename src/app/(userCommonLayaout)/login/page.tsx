@@ -8,10 +8,13 @@ import { Input, Button, Card, CardBody, Checkbox } from "@nextui-org/react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import loginValidationSchema from "@/src/schemas/login.schemas";
 import { loginUser } from "@/src/services/loginUser";
+import { useUser } from "@/src/context/user.provider";
+import { useUserLogin } from "@/src/hooks/auth.hook";
+import { useEffect } from "react";
 
 // Define validation schema
 type LoginFormData = z.infer<typeof loginValidationSchema>;
@@ -26,32 +29,31 @@ const LoginPage = () => {
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginValidationSchema),
   });
+  // 
+  const searchParams = useSearchParams();
+ 
+  const {user,setIsLoading: userLoading } = useUser();
+  console.log(user,"provider user")
+
+  const redirect = searchParams.get("redirect");
+
+  const { mutate: handleUserLogin, isPending, isSuccess } = useUserLogin();
 
   // Submit Handler
   const onSubmit = async (data: LoginFormData) => {
-    try {
-      const result = await loginUser(data);
-
-      if (result.success) {
-        toast.success("✅ Login successful!", {
-          position: "top-right",
-          duration: 3000,
-        });
-        router.push("/");
-      } else {
-        toast.error(result.errorSource?.[0]?.message || "Login failed", {
-          position: "top-right",
-          duration: 3000,
-        });
-      }
-      reset();
-    } catch (error: any) {
-      toast.error(error.message || "Login failed", {
-        position: "top-right",
-        duration: 3000,
-      });
-    }
+    handleUserLogin(data);
+    userLoading(true);
+    reset()
   };
+  useEffect(() => {
+    if (!isPending && isSuccess) {
+      if (redirect) {
+        router.push(redirect);
+      } else {
+        router.push("/");
+      }
+    }
+  }, [isPending, isSuccess]);
 
   return (
     <div
@@ -63,9 +65,9 @@ const LoginPage = () => {
     >
       <motion.div
         animate={{ opacity: 1, y: 0 }}
+        className="w-full max-w-4xl flex  bg-white rounded-2xl shadow-lg overflow-hidden"
         initial={{ opacity: 0, y: -20 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-4xl flex  bg-white rounded-2xl shadow-lg overflow-hidden"
       >
         {/* Left Side - Welcome Message */}
         <div className="w-1/2 bg-blue-500 flex flex-col justify-center items-center text-white p-10 rounded-r-full  ">
@@ -115,12 +117,12 @@ const LoginPage = () => {
 
               {/* Remember Me & Forgot Password */}
               <div className="flex justify-between items-center">
-                <Checkbox color="primary" className="hover:none">
+                <Checkbox className="hover:none" color="primary">
                   <p className="text-black">Remember me</p>
                 </Checkbox>
                 <Link
-                  href="/forgot-password"
                   className="text-blue-500 hover:underline text-sm"
+                  href="/forgot-password"
                 >
                   Forgot Password?
                 </Link>
@@ -147,16 +149,16 @@ const LoginPage = () => {
               or login with social platforms
             </p>
             <div className="flex justify-center space-x-4 mt-3">
-              <Button isIconOnly color="default" className="p-3 shadow-md">
+              <Button isIconOnly className="p-3 shadow-md" color="default">
                 <span className="text-lg">G</span>
               </Button>
-              <Button isIconOnly color="default" className="p-3 shadow-md">
+              <Button isIconOnly className="p-3 shadow-md" color="default">
                 <span className="text-lg">f</span>
               </Button>
-              <Button isIconOnly color="default" className="p-3 shadow-md">
+              <Button isIconOnly className="p-3 shadow-md" color="default">
                 <span className="text-lg">G</span>
               </Button>
-              <Button isIconOnly color="default" className="p-3 shadow-md">
+              <Button isIconOnly className="p-3 shadow-md" color="default">
                 <span className="text-lg">in</span>
               </Button>
             </div>

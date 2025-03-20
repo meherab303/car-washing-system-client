@@ -1,8 +1,7 @@
 /* eslint-disable prettier/prettier */
 "use client";
 
-import { getCurrentUser } from "@/src/services/currentUser";
-import { logout } from "@/src/services/logout";
+
 import {
   Avatar,
   Dropdown,
@@ -11,6 +10,8 @@ import {
   DropdownTrigger,
 } from "@heroui/react";
 import { useRouter } from "next/navigation";
+
+import { logout } from "@/src/services/logout";
 // import { useEffect, useState } from "react";
 
 export default function NavbarDropdown() {
