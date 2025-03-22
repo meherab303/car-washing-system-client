@@ -47,14 +47,14 @@ export default function NavbarDropdown() {
 
       <DropdownMenu aria-label="Static Actions">
         <DropdownItem
-          key="profile"
-          onPress={() => handleNavigation("/profile")}
+          key="dashboard"
+          onPress={() => handleNavigation("/dashboard")}
         >
           Profile
         </DropdownItem>
         <DropdownItem
           key="settings"
-          onPress={() => handleNavigation("/profile/settings")}
+          onPress={() => handleNavigation("/dashboard/settings")}
         >
           Settings
         </DropdownItem>
