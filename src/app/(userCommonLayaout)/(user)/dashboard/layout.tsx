@@ -4,8 +4,8 @@
 
 import type { Metadata } from "next";
 
-import Sidebar from "@/src/components/modules/UI/Sidebar";
 import Container from "@/src/components/modules/UI/container";
+import Sidebar from "@/src/components/modules/UI/Sidebar";
 
 
 

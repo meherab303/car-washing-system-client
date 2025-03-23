@@ -50,14 +50,14 @@ export default function NavbarDropdown() {
           key="dashboard"
           onPress={() => handleNavigation("/dashboard")}
         >
-          Profile
+          Dashboard
         </DropdownItem>
-        <DropdownItem
+        {/* <DropdownItem
           key="settings"
           onPress={() => handleNavigation("/dashboard/settings")}
         >
           Settings
-        </DropdownItem>
+        </DropdownItem> */}
         <DropdownItem
           key="logout"
           className="text-danger"
