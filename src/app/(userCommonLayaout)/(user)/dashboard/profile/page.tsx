@@ -3,36 +3,43 @@
 import { useUser } from "@/src/context/user.provider"; 
 import { useEffect, useState } from "react";
 import envConfig from "@/src/config/envConfig";
+import { getToken } from "@/src/utils/getToken";
 
 const ProfilePage = () => {
   const { user } = useUser();
   const [userData, setUserData] = useState<any>(null); 
 
+  
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
+       const token=await getToken()
+
         const res = await fetch(`${envConfig.baseApi}/users/getMe`, {
           method: "GET",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+             Authorization:`${token}`
           },
           credentials: "include", // To include cookies for authentication
         });
-        console.log('Response Status:', res);
-        if (!res) {
+
+       
+        if (!res.ok) {
           throw new Error("Failed to fetch user data");
         }
 
         const data = await res.json();
-        console.log(data,"dataaaaaaaassspppasbd")
-        setUserData(data.data);  // Store the fetched user data in state
+      
+        setUserData(data.data); 
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     };
 
     if (user?.userEmail) {
-      fetchUserData();  // Fetch data when user email is available
+      fetchUserData(); 
     }
   }, [user?.userEmail]);
 
