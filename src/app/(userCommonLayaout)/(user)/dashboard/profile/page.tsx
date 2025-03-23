@@ -1,9 +1,15 @@
 "use client"
+import { useEffect, useState } from "react";
 
 import { useUser } from "@/src/context/user.provider"; 
-import { useEffect, useState } from "react";
 import envConfig from "@/src/config/envConfig";
 import { getToken } from "@/src/utils/getToken";
+import { Card, CardHeader } from "@heroui/card";
+import { Avatar, Skeleton } from "@heroui/react";
+import { motion } from "framer-motion";
+
+import { FiEdit } from "react-icons/fi";
+import ProfileSkeleton from "@/src/components/modules/UI/ProfileSkeleton";
 
 const ProfilePage = () => {
   const { user } = useUser();
@@ -22,7 +28,7 @@ const ProfilePage = () => {
             "Content-Type": "application/json",
              Authorization:`${token}`
           },
-          credentials: "include", // To include cookies for authentication
+          credentials: "include",
         });
 
        
@@ -44,20 +50,85 @@ const ProfilePage = () => {
   }, [user?.userEmail]);
 
   if (!userData) {
-    return <div>Loading...</div>;
+    return (
+      <div >
+        <ProfileSkeleton/>
+      </div>
+    );
   }
 
   return (
-    <div className="profile-container">
-      <h1>{userData.name}'s Profile</h1>
-      <p>Email: {userData.email}</p>
-      <p>Phone: {userData.phone}</p>
-      <p>Address: {userData.address}</p>
-      <p>Role: {userData.role}</p>
-      <p>Created At: {new Date(userData.createdAt).toLocaleString()}</p>
-      <p>Updated At: {new Date(userData.updatedAt).toLocaleString()}</p>
+    <motion.div 
+    className="max-w-3xl mx-auto p-6"
+    initial={{ opacity: 0, y: 20 }} 
+    animate={{ opacity: 1, y: 0 }} 
+    transition={{ duration: 0.6, ease: "easeOut" }}
+  >
+    {/* Title + Update Button */}
+    <div className="flex items-center justify-between">
+      <motion.h1 
+        className="text-3xl font-bold text-default-500"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        My Profile
+      </motion.h1>
+
+      {/* Update Profile Button (Icon Only) */}
+      <motion.button
+        className="  shadow-md transition-all"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        
+        <FiEdit size={20} className="text-default-600"/>
+       
+      </motion.button>
     </div>
-  );
+
+    {/* Underline */}
+    <motion.div 
+      className="w-full h-[1px] bg-gray-300 mt-2"
+      initial={{ scaleX: 0 }}
+      animate={{ scaleX: 1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+    ></motion.div>
+
+    {/* Profile Info */}
+    <div className="grid grid-cols-2 gap-y-6 mt-6">
+      {[
+        { label: "Name", value: userData.name },
+        { label: "Email", value: userData.email },
+        { label: "Phone", value: userData.phone },
+        { label: "Address", value: userData.address },
+        { label: "Role", value: userData.role },
+        { label: "Created At", value: new Date(userData.createdAt).toLocaleString() }
+      ].map((item, index) => (
+        <motion.div 
+          key={index}
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: index * 0.1 }}
+        >
+          <p className="text-sm text-gray-500">{item.label}</p>
+          <p className="text-lg font-medium">{item.value}</p>
+        </motion.div>
+      ))}
+
+      {/* Updated At */}
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.7 }}
+      >
+        <p className="text-sm text-gray-500">Updated At</p>
+        <p className="text-lg font-medium">
+          {new Date(userData.updatedAt).toLocaleString()}
+        </p>
+      </motion.div>
+    </div>
+  </motion.div>)
 };
 
 export default ProfilePage;
