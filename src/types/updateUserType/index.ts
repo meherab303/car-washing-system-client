@@ -7,6 +7,8 @@ export type TUser={
     address: string;
     isDeleted?: boolean;
     passwordChangeAt?: Date;
+    createdAt?:string;
+    updatedAt:string
   }
 
   export type TUpdateUser = {
