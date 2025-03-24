@@ -21,7 +21,6 @@ export const useUserRegistration = () => {
       return await createUser(userData); // Call API
     },
     onSuccess: (result) => {
-      console.log(result, "inside hook result");
       if (result.success == true) {
         toast.success("🎉 Registration successful!", {
           position: "top-right",

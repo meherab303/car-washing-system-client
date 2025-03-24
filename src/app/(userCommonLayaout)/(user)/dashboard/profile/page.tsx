@@ -1,15 +1,16 @@
+/* eslint-disable prettier/prettier */
 "use client"
 import { useEffect, useState } from "react";
 
 import { useUser } from "@/src/context/user.provider"; 
 import envConfig from "@/src/config/envConfig";
 import { getToken } from "@/src/utils/getToken";
-import { Card, CardHeader } from "@heroui/card";
-import { Avatar, Skeleton } from "@heroui/react";
+
 import { motion } from "framer-motion";
 
 import { FiEdit } from "react-icons/fi";
 import ProfileSkeleton from "@/src/components/modules/UI/ProfileSkeleton";
+import Link from "next/link";
 
 const ProfilePage = () => {
   const { user } = useUser();
@@ -31,7 +32,7 @@ const ProfilePage = () => {
           credentials: "include",
         });
 
-       
+       console.log(res,"rsersrsrs")
         if (!res.ok) {
           throw new Error("Failed to fetch user data");
         }
@@ -76,15 +77,15 @@ const ProfilePage = () => {
       </motion.h1>
 
       {/* Update Profile Button (Icon Only) */}
+      <Link href="/dashboard/update-profile">
       <motion.button
-        className="  shadow-md transition-all"
+        className="shadow-md transition-all"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
-        
-        <FiEdit size={20} className="text-default-600"/>
-       
+        <FiEdit size={20} className="text-default-600" />
       </motion.button>
+    </Link>
     </div>
 
     {/* Underline */}
