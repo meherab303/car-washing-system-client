@@ -10,6 +10,7 @@ import ProfileForm from "@/src/components/modules/UserDashboard/ProfileForm";
 const ProfilePage = () => {
   const { user } = useUser();
   const { data: userData } = useGetUserData(user?.userEmail);
+  console.log(userData,"userDatta")
   
   
   if (!userData) {

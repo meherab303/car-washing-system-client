@@ -7,7 +7,7 @@ import ProfileSkeleton from "@/src/components/modules/UI/ProfileSkeleton";
 import { useGetUserData } from "@/src/hooks/user.hook";
 import ProfileForm from "@/src/components/modules/UserDashboard/ProfileForm";
 
-const ProfilePage = () => {
+const UserDashboard = () => {
   const { user } = useUser();
   const { data: userData } = useGetUserData(user?.userEmail);
   
@@ -25,4 +25,4 @@ const ProfilePage = () => {
   )
 };
 
-export default ProfilePage;
+export default UserDashboard;
