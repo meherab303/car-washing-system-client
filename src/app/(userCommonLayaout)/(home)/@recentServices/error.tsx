@@ -21,7 +21,7 @@ export default function Error({
           <p className="mt-2 text-gray-600">{error.message}</p>
           <Button
             className="mt-4 text-white bg-red-500 hover:bg-red-600 transition"
-            onClick={reset}
+            onPress={reset}
           >
             Try Again
           </Button>

@@ -1,75 +1,95 @@
 import Link from "next/link";
-import { FaCarCrash, FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import { FaCar, FaCarCrash, FaFacebook, FaInstagram, FaTwitter, FaWater } from "react-icons/fa";
+import { BiSolidCarWash } from "react-icons/bi";
 
 const Footer = () => {
   return (
-    <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-10">
-      <nav>
-        <h6 className="footer-title">Services</h6>
-        <Link href="/services/exterior-wash">
-          <p className="link link-hover">Exterior Wash</p>
-        </Link>
-        <Link href="/services/interior-cleaning">
-          <p className="link link-hover">Interior Cleaning</p>
-        </Link>
-        <Link href="/services/polishing">
-          <p className="link link-hover">Polishing</p>
-        </Link>
-        <Link href="/services/ceramic-coating">
-          <p className="link link-hover">Ceramic Coating</p>
-        </Link>
-      </nav>
-      <nav>
-        <h6 className="footer-title">Company</h6>
-        <Link href="/about">
-          <p className="link link-hover">About Us</p>
-        </Link>
-        <Link href="/contact">
-          <p className="link link-hover">Contact</p>
-        </Link>
-        <Link href="/careers">
-          <p className="link link-hover">Careers</p>
-        </Link>
-        <Link href="/press">
-          <p className="link link-hover">Press</p>
-        </Link>
-      </nav>
-      <nav>
-        <h6 className="footer-title">Legal</h6>
-        <Link href="/terms-of-service">
-          <p className="link link-hover">Terms of Service</p>
-        </Link>
-        <Link href="/privacy-policy">
-          <p className="link link-hover">Privacy Policy</p>
-        </Link>
-        <Link href="/cookie-policy">
-          <p className="link link-hover">Cookie Policy</p>
-        </Link>
-      </nav>
-
-      <footer className="footer bg-base-200 text-base-content border-base-300 border-t px-10 py-4">
-        <aside className="grid-flow-col items-center">
-          <FaCarCrash size={24} className="fill-current text-blue-600" />
-          <p>
-            Car Wash Experts
-            <br />
-            Providing quality cleaning services since 2010
-          </p>
-        </aside>
-        <nav className="md:place-self-center md:justify-self-end">
-          <div className="grid grid-flow-col gap-4">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-              <FaFacebook size={24} className="fill-current text-blue-600" />
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-              <FaInstagram size={24} className="fill-current text-blue-600" />
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-              <FaTwitter size={24} className="fill-current text-blue-600" />
-            </a>
+    <footer className="bg-black text-white py-12">
+      <div className="max-w-screen-xl mx-auto px-6 md:px-12">
+        {/* Services Section */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          <div>
+            <h6 className="text-xl font-semibold mb-4">Services</h6>
+            <Link href="/exteriorWash">
+              <p className="link link-hover text-lg hover:text-blue-300 transition-all duration-200">Exterior Wash</p>
+            </Link>
+            <Link href="/interior-cleaning">
+              <p className="link link-hover text-lg hover:text-blue-300 transition-all duration-200">Interior Cleaning</p>
+            </Link>
+            <Link href="/polishing">
+              <p className="link link-hover text-lg hover:text-blue-300 transition-all duration-200">Polishing</p>
+            </Link>
+            <Link href="/ceramic-coating">
+              <p className="link link-hover text-lg hover:text-blue-300 transition-all duration-200">Ceramic Coating</p>
+            </Link>
           </div>
-        </nav>
-      </footer>
+
+          {/* Company Section */}
+          <div>
+            <h6 className="text-xl font-semibold mb-4">Company</h6>
+            <Link href="/about">
+              <p className="link link-hover text-lg hover:text-blue-300 transition-all duration-200">About Us</p>
+            </Link>
+            <Link href="/contact">
+              <p className="link link-hover text-lg hover:text-blue-300 transition-all duration-200">Contact</p>
+            </Link>
+            
+          </div>
+
+          {/* Legal Section */}
+          <div>
+            <h6 className="text-xl font-semibold mb-4">Legal</h6>
+            <Link href="/terms-of-service">
+              <p className="link link-hover text-lg hover:text-blue-300 transition-all duration-200">Terms of Service</p>
+            </Link>
+            <Link href="/privacy-policy">
+              <p className="link link-hover text-lg hover:text-blue-300 transition-all duration-200">Privacy Policy</p>
+            </Link>
+            <Link href="/cookie-policy">
+              <p className="link link-hover text-lg hover:text-blue-300 transition-all duration-200">Cookie Policy</p>
+            </Link>
+          </div>
+
+          {/* Social Media Section */}
+          <div className="flex flex-col items-center space-y-4">
+          <div className="flex items-center gap-2">
+          <BiSolidCarWash  size={25}/>
+              <p className="font-semibold text-xl">Car Wash Experts</p>
+            </div>
+            <p className="text-center">Providing quality cleaning services since 2010</p>
+            <div className="flex gap-4 mt-4">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:text-white transition-all duration-300"
+              >
+                <FaFacebook size={24} />
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-pink-500 hover:text-white transition-all duration-300"
+              >
+                <FaInstagram size={24} />
+              </a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:text-white transition-all duration-300"
+              >
+                <FaTwitter size={24} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-gray-700 py-4 mt-8 w-11/12 mx-auto rounded-full">
+        <p className="text-center text-sm">&copy; {new Date().getFullYear()} Car Wash Experts. All rights reserved.</p>
+      </div>
     </footer>
   );
 };
