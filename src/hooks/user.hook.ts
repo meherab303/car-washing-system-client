@@ -32,7 +32,7 @@ export const useUserProfileUpdate=()=>{
 }
 
 export const useGetUserData = (userEmail?: string | null) => {
-  return useQuery<any, Error,TGetUser>({
+  return useQuery<TGetUser, Error>({
     queryKey: ["USER_PROFILE"],
     queryFn: async () => {
       const data = await getUserData();
@@ -70,7 +70,7 @@ export const useBookingSlots = (serviceId?: string) => {
       return data;
     },
     enabled: !!serviceId, // Only run query when serviceId is available
-    staleTime: 1000 * 60 * 5, // Cache data for 5 minutes
+   
   });
 };
 
