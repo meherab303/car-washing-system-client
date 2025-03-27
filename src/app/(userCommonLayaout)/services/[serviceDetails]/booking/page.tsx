@@ -1,39 +1,31 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useForm, Controller } from "react-hook-form";
 import { Input, Select, SelectItem, Button, Card } from "@nextui-org/react";
 import { motion } from "framer-motion";
 import { Image } from "@heroui/image";
-import envConfig from "@/src/config/envConfig";
 
-type BookingFormData = {
-  service: string;
-  customer: string;
-  slot: string;
-  vehicleType: string;
-  vehicleBrand: string;
-  vehicleModel: string;
-  manufacturingYear: number;
-  registrationPlate: string;
-};
-export type TBookingSlot = {
-  _id: string;
-  service: string;
-  date: string;
-  startTime: string;
-  endTime: string;
-  isBooked?: "available" | "booked" | "canceled";
-};
+import { useBookingSlots, useCreateBooking, useGetUserData } from "@/src/hooks/user.hook";
+import { BookingFormData, TBookingSlot } from "@/src/types/BookingTypes";
+import { useUser } from "@/src/context/user.provider";
+
+
+
 
 const BookingPage = () => {
   const searchParams = useSearchParams();
   const serviceId = searchParams.get("serviceId");
   const serviceName = searchParams.get("serviceName");
-  const serviceImage = searchParams.get("serviceImage"); // Get image URL from query params
+  const duration = searchParams.get("duration");
+  const price = searchParams.get("price");
+  const serviceImage = searchParams.get("serviceImage");
+  const { user } = useUser();
+  const { data: userData } = useGetUserData(user?.userEmail);
+  
 
-  const [slots, setSlots] = useState<TBookingSlot[]>([]);
+
+ 
 
   const {
     register,
@@ -43,48 +35,35 @@ const BookingPage = () => {
   } = useForm<BookingFormData>();
 
   // Fetch available slots dynamically
-  useEffect(() => {
-    const fetchSlots = async () => {
-      if (!serviceId) return;
-      try {
-        const res = await fetch(
-          `${envConfig.baseApi}/bookingSlot?serviceId=${serviceId}`,
-        );
-        const { data: slots } = await res.json();
-        setSlots(slots);
-      } catch (error) {
-        console.error("Error fetching slots:", error);
-      }
-    };
+  const { data: slots = [], isLoading}= useBookingSlots(serviceId as string);
+  const { mutate:handleBooking,isPending,isSuccess} = useCreateBooking();
+  
 
-    fetchSlots();
-  }, [serviceId]);
 
   // Submit handler
   const onSubmit = async (data: BookingFormData) => {
     const bookingData = {
       service: serviceId,
       slot: data.slot,
+      customer: userData?._id,
       vehicleType: data.vehicleType,
       vehicleBrand: data.vehicleBrand,
       vehicleModel: data.vehicleModel,
       manufacturingYear: Number(data.manufacturingYear),
       registrationPlate: data.registrationPlate,
     };
+    console.log(bookingData)
 
-    const response = await fetch("/api/booking", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(bookingData),
-    });
+    handleBooking(bookingData as BookingFormData)
 
-    if (response.ok) {
-      alert("Booking successful!");
-    } else {
-      alert("Error in booking");
-    }
   };
+ if(isLoading){
+  return <p>loading</p>
+}
 
+ if(isPending && !isSuccess){
+  return <p>use glassmorfism</p>
+}
   return (
     <div className="max-w-5xl mx-auto p-6">
       <Card className="p-6 shadow-lg rounded-lg">
@@ -117,12 +96,19 @@ const BookingPage = () => {
             transition={{ duration: 0.6 }}
           >
             {/* Service Name (Read-only) */}
-            <div>
+           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+           <div>
               <label htmlFor="serviceName" className="block font-medium text-black">Service Name</label>
               <Input id="serviceName" type="text" value={serviceName || ""} isReadOnly />
             </div>
+            <div>
+              <label htmlFor="duration" className="block font-medium text-black">Duration</label>
+              <Input id="duration" type="text" value={duration || ""} isReadOnly />
+            </div>
+           </div>
 
             {/* Slot Selection (Dynamic) */}
+            <div className="grid grid-cols-1 md: grid-cols-2 gap-4">
             <div>
               <label htmlFor="slot" className="block font-medium text-black">Select Slot</label>
               <Controller
@@ -131,7 +117,7 @@ const BookingPage = () => {
                 rules={{ required: "Slot selection is required" }}
                 render={({ field }) => (
                   <Select {...field} className="w-full" isInvalid={!!errors.slot}>
-                    {slots.map((slot) => (
+                    {slots?.map((slot:TBookingSlot) => (
                       <SelectItem key={slot._id} value={slot._id}>
                         {slot.startTime}
                       </SelectItem>
@@ -140,6 +126,11 @@ const BookingPage = () => {
                 )}
               />
               {errors.slot && <p className="text-red-500 text-sm mt-1">{errors.slot.message}</p>}
+            </div>
+            <div>
+            <label htmlFor="price" className="block font-medium text-black">Price $</label>
+            <Input id="price" type="text" value={price || ""} isReadOnly />
+            </div>
             </div>
 
             {/* Vehicle Details (2-column layout) */}

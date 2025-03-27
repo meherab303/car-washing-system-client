@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { TService } from "../types/carServiceTypes";
 import { SlotBooking } from "../types/slotBookingTypes";
 import AvailableSlots from "./modules/service/AvailableSlots";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 const ServiceDetailsCard = ({
   service,
@@ -16,11 +16,11 @@ const ServiceDetailsCard = ({
   slots: SlotBooking[];
 }) => {
   const router = useRouter();
-  const { name, description, duration, price } = service;
+  const { _id,name, description, duration, price } = service;
 
 const handleBooking = () => {
   router.push(
-    `/booking?serviceId=${service._id}&slotId=${slots[0]._id}&serviceName=${encodeURIComponent(service.name)}`
+    `/services/${_id}/booking?serviceId=${_id}&slotId=${slots[0]._id}&serviceName=${encodeURIComponent(name)}&duration=${duration}&price=${price}`
   );
 };
 

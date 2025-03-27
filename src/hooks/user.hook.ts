@@ -9,6 +9,9 @@ import { TUpdateUser} from "../types/updateUserType";
 import { TGetUser } from "../types/getUserType";
 import { getMyBookings } from "../services/getMybookings";
 import { TBooking } from "../types/getMyBookingsType";
+import { getBookingSlots } from "../services/getBookingSlots";
+import { BookingFormData } from "../types/BookingTypes";
+import { createBooking } from "../services/createBooking";
  
 
 export const useUserProfileUpdate=()=>{
@@ -29,7 +32,7 @@ export const useUserProfileUpdate=()=>{
 }
 
 export const useGetUserData = (userEmail?: string | null) => {
-  return useQuery<TGetUser, Error>({
+  return useQuery<any, Error,TGetUser>({
     queryKey: ["USER_PROFILE"],
     queryFn: async () => {
       const data = await getUserData();
@@ -54,5 +57,38 @@ export const useGetUserMyBookings = (userEmail?: string | null) => {
     }, 
     enabled: !!userEmail, 
     retry: 1, 
+  });
+};
+
+
+export const useBookingSlots = (serviceId?: string) => {
+  return useQuery({
+    queryKey: ["bookingSlots", serviceId],
+    queryFn: async () => {
+      if (!serviceId) throw new Error("No service ID provided");
+      const { data } = await getBookingSlots(serviceId);
+      return data;
+    },
+    enabled: !!serviceId, // Only run query when serviceId is available
+    staleTime: 1000 * 60 * 5, // Cache data for 5 minutes
+  });
+};
+
+
+export const useCreateBooking = () => {
+  const router = useRouter();
+
+  return useMutation<any, Error, BookingFormData>({
+    mutationKey: ["CREATE_BOOKING"],
+    mutationFn: async (bookingData) => {
+      return await createBooking(bookingData); 
+    },
+    onSuccess: () => {
+      toast.success("Booking created successfully!");
+      router.push("/dashboard/my-bookings");
+    },
+    onError: (error: any) => {
+      toast.error(error?.response?.data?.message ||"Failed to create booking");
+    },
   });
 };
