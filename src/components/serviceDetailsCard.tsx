@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { TService } from "../types/carServiceTypes";
 import { SlotBooking } from "../types/slotBookingTypes";
 import AvailableSlots from "./modules/service/AvailableSlots";
+import { useRouter } from "next/navigation";
 
 const ServiceDetailsCard = ({
   service,
@@ -14,7 +15,14 @@ const ServiceDetailsCard = ({
   service: TService;
   slots: SlotBooking[];
 }) => {
+  const router = useRouter();
   const { name, description, duration, price } = service;
+
+const handleBooking = () => {
+  router.push(
+    `/booking?serviceId=${service._id}&slotId=${slots[0]._id}&serviceName=${encodeURIComponent(service.name)}`
+  );
+};
 
   return (
     <motion.div
@@ -97,6 +105,7 @@ const ServiceDetailsCard = ({
                 before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-900 before:-z-10 
                 z-10"
                 isDisabled={slots.length === 0}
+                onPress={handleBooking}
               >
                 Book This Service
               </Button>

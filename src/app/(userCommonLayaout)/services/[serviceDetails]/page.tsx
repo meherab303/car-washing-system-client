@@ -11,7 +11,7 @@ export default async function ServiceDetails({
 }: {
   params: { serviceDetails: string };
 }) {
-  const serviceId = (await params).serviceDetails;
+  const serviceId = ( await params).serviceDetails;
 
   const { data: service } = await getSingleCarService(serviceId);
 

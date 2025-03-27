@@ -18,7 +18,7 @@ const ExteriorWashPage = () => {
           transition={{ duration: 0.5 }}
         >
           <FaCar size={30} className="text-blue-500" />
-          <h2 className="text-3xl font-semibold">Exterior Wash</h2>
+          <h2 className="text-3xl text-black font-semibold">Exterior Wash</h2>
         </motion.div>
         
         <motion.p
@@ -31,7 +31,7 @@ const ExteriorWashPage = () => {
         </motion.p>
 
         <div className="mb-6">
-          <h3 className="text-xl font-semibold">Step-by-Step Process:</h3>
+          <h3 className="text-xl text-black font-semibold">Step-by-Step Process:</h3>
           <ul className="list-inside list-decimal ml-4">
             {[
               "Pre-wash inspection: We start by inspecting the exterior of your vehicle to identify any areas requiring special attention.",
