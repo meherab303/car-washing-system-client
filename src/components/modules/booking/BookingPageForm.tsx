@@ -69,11 +69,11 @@ const BookingPageForm = ({formdetails}) => {
             {/* Service Name (Read-only) */}
            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
            <div>
-              <label htmlFor="serviceName" className="block font-medium text-black">Service Name</label>
+              <label htmlFor="serviceName" className="block font-medium text-default-600">Service Name</label>
               <Input id="serviceName" type="text" value={serviceName || ""} isReadOnly />
             </div>
             <div>
-              <label htmlFor="duration" className="block font-medium text-black">Duration</label>
+              <label htmlFor="duration" className="block font-medium text-default-600">Duration</label>
               <Input id="duration" type="text" value={duration || ""} isReadOnly />
             </div>
            </div>
@@ -81,7 +81,7 @@ const BookingPageForm = ({formdetails}) => {
             {/* Slot Selection (Dynamic) */}
             <div className="grid grid-cols-1 md: grid-cols-2 gap-4">
             <div>
-              <label htmlFor="slot" className="block font-medium text-black">Select Slot</label>
+              <label htmlFor="slot" className="block font-medium text-default-600">Select Slot</label>
               <Controller
                 name="slot"
                 control={control}
@@ -99,7 +99,7 @@ const BookingPageForm = ({formdetails}) => {
               {errors.slot && <p className="text-red-500 text-sm mt-1">{errors.slot.message}</p>}
             </div>
             <div>
-            <label htmlFor="price" className="block font-medium text-black">Price $</label>
+            <label htmlFor="price" className="block font-medium text-default-600">Price $</label>
             <Input id="price" type="text" value={price || ""} isReadOnly />
             </div>
             </div>
@@ -107,7 +107,7 @@ const BookingPageForm = ({formdetails}) => {
             {/* Vehicle Details (2-column layout) */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="vehicleType" className="block font-medium text-black">Vehicle Type</label>
+                <label htmlFor="vehicleType" className="block font-medium text-default-600">Vehicle Type</label>
                 <Input
                   id="vehicleType"
                   {...register("vehicleType", { required: "Vehicle Type is required" })}
@@ -116,7 +116,7 @@ const BookingPageForm = ({formdetails}) => {
                 {errors.vehicleType && <p className="text-red-500 text-sm mt-1">{errors.vehicleType.message}</p>}
               </div>
               <div>
-                <label htmlFor="vehicleBrand" className="block font-medium text-black">Vehicle Brand</label>
+                <label htmlFor="vehicleBrand" className="block font-medium text-default-600">Vehicle Brand</label>
                 <Input
                   id="vehicleBrand"
                   {...register("vehicleBrand", { required: "Vehicle Brand is required" })}
@@ -128,7 +128,7 @@ const BookingPageForm = ({formdetails}) => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="vehicleModel" className="block font-medium text-black">Vehicle Model</label>
+                <label htmlFor="vehicleModel" className="block font-medium text-default-600">Vehicle Model</label>
                 <Input
                   id="vehicleModel"
                   {...register("vehicleModel", { required: "Vehicle Model is required" })}
@@ -137,7 +137,7 @@ const BookingPageForm = ({formdetails}) => {
                 {errors.vehicleModel && <p className="text-red-500 text-sm mt-1">{errors.vehicleModel.message}</p>}
               </div>
               <div>
-                <label htmlFor="manufacturingYear" className="block font-medium text-black">Manufacturing Year</label>
+                <label htmlFor="manufacturingYear" className="block font-medium text-default-600">Manufacturing Year</label>
                 <Input
                   id="manufacturingYear"
                   type="number"
@@ -151,7 +151,7 @@ const BookingPageForm = ({formdetails}) => {
             </div>
 
             <div>
-              <label htmlFor="registrationPlate" className="block font-medium text-black">Registration Plate</label>
+              <label htmlFor="registrationPlate" className="block font-medium text-default-600">Registration Plate</label>
               <Input
                 id="registrationPlate"
                 {...register("registrationPlate", { required: "Registration Plate is required" })}

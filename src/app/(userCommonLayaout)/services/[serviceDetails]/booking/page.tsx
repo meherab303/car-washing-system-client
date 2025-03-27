@@ -57,12 +57,7 @@ const formdetails={
 
 if (isPending) {
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 p-6">
-      <div className="w-full max-w-md p-8 bg-white/10 backdrop-blur-lg rounded-xl shadow-lg border border-white/30 flex flex-col items-center">
-        <div className="animate-spin h-12 w-12 border-4 border-white border-t-transparent rounded-full"></div>
-        <p className="mt-4 text-lg font-semibold text-gray-200">Loading...</p>
-      </div>
-    </div>
+    <p>loading....</p>
   );
 }
 return searchParamsInfo.serviceId && searchParamsInfo.userData ? (

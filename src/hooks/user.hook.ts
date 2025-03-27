@@ -88,7 +88,7 @@ export const useCreateBooking = () => {
       router.push("/dashboard/my-bookings");
     },
     onError: (error: any) => {
-      toast.error(error?.response?.data?.message ||"Failed to create booking");
+      toast.error(error?.response?.data?.message=="Validation error"?error?.response?.data?.message :"Failed to create booking");
     },
   });
 };
