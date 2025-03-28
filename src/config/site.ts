@@ -9,14 +9,6 @@ export const siteConfig = {
       href: "/",
     },
     {
-      label: "Booking",
-      href: "/booking",
-    },
-    {
-      label: "BookingSlot",
-      href: "/bookingSlot",
-    },
-    {
       label: "Services",
       href: "/services",
     },
@@ -33,15 +25,6 @@ export const siteConfig = {
     {
       label: "Home",
       href: "/",
-    },
-  
-    {
-      label: "Booking",
-      href: "/booking",
-    },
-    {
-      label: "BookingSlot",
-      href: "/bookingSlot",
     },
     {
       label: "Services",

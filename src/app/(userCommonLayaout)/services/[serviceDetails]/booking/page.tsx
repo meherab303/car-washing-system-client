@@ -1,14 +1,12 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useForm, Controller } from "react-hook-form";
-import { Input, Select, SelectItem, Button, Card } from "@nextui-org/react";
-import { motion } from "framer-motion";
-import { Image } from "@heroui/image";
+import { useForm } from "react-hook-form";
+
 
 import { useBookingSlots, useCreateBooking, useGetUserData } from "@/src/hooks/user.hook";
 
-import { BookingFormData, TBookingSlot } from "@/src/types/BookingTypes";
+import { BookingFormData,} from "@/src/types/BookingTypes";
 import { useUser } from "@/src/context/user.provider";
 import BookingPageForm from "@/src/components/modules/booking/BookingPageForm";
 import NoBookingDataAvailable from "@/src/components/modules/booking/NoBookingDataAvailable";

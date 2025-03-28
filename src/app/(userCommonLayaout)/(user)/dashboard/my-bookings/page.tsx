@@ -17,9 +17,14 @@ const MyBookingsPage = () => {
   if (!Array.isArray(data)) {
     return <p className="text-center text-xl text-red-500 font-semibold">No bookings data available.</p>;
   }
+  const upcomingBookings = data
+  .filter((booking: TBooking) => new Date(`${booking.slot.date}T${booking.slot.startTime}`) > new Date())
+  .sort((a, b) => new Date(`${a.slot.date}T${a.slot.startTime}`).getTime() - new Date(`${b.slot.date}T${b.slot.startTime}`).getTime());
 
-  const upcomingBookings = data.filter((booking: TBooking) => new Date(`${booking.slot.date}T${booking.slot.startTime}`) > new Date());
-  const pastBookings = data.filter((booking: TBooking) => new Date(`${booking.slot.date}T${booking.slot.startTime}`) <= new Date());
+const pastBookings = data
+  .filter((booking: TBooking) => new Date(`${booking.slot.date}T${booking.slot.startTime}`) <= new Date())
+  .sort((a, b) => new Date(`${b.slot.date}T${b.slot.startTime}`).getTime() - new Date(`${a.slot.date}T${a.slot.startTime}`).getTime()); 
+
 
   return (
     <motion.div
