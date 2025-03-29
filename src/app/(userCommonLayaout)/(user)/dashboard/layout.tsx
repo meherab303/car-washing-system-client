@@ -30,7 +30,7 @@ export default function DashboardLayout({
 
         {/* Sidebar for Large Screens */}
         <div
-          className={`fixed inset-y-0 left-0 bg-default-100 w-[60%] sm:w-[50%] md:w-[35%] lg:w-[20%] p-4 transition-transform transform ${isDrawerOpen ? "translate-x-0" : "-translate-x-full"} lg:relative lg:translate-x-0 lg:block rounded-xl shadow-lg lg:shadow-none z-50`}
+          className={`fixed inset-y-0 left-0 bg-default-100 w-[60%] sm:w-[50%] md:w-[35%] lg:w-[20%] p-4 transition-transform transform ${isDrawerOpen ? "translate-x-0" : "-translate-x-full"} lg:relative lg:translate-x-0 lg:block rounded-r-xl md:rounded-xl shadow-lg lg:shadow-none z-50`}
         >
           <button
             onClick={() => setDrawerOpen(false)}
@@ -42,7 +42,7 @@ export default function DashboardLayout({
         </div>
 
         {/* Main Content */}
-        <div className="w-full lg:w-[80%] bg-default-100 rounded-xl p-4">
+        <div className="w-full lg:w-[80%] bg-default-100 rounded-xl p-4 md:ml-2">
           {children}
         </div>
       </div>

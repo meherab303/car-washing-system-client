@@ -1,5 +1,7 @@
 /* eslint-disable prettier/prettier */
 
+import HomeAccordion from "@/src/components/modules/home/HomeAccordian";
+
 export default function layout({
   children,
   recentServices,
@@ -11,6 +13,7 @@ export default function layout({
     <>
       {children}
       {recentServices}
+      <HomeAccordion/>
     </>
   );
 }

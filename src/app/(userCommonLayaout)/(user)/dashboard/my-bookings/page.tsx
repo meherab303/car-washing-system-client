@@ -57,14 +57,21 @@ const MyBookingsPage = () => {
                     <Calendar size={16} />
                     {new Date(booking.slot.date).toLocaleDateString()} at {booking.slot.startTime}
                   </p>
-                  <motion.div className="mt-3 p-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-md text-center shadow-md">
-                    <Countdown date={new Date(`${booking.slot.date}T${booking.slot.startTime}`)} renderer={({ days, hours, minutes, seconds }) => (
-                      <div className="text-lg font-semibold">
-                        <Clock size={18} className="inline-block mr-2" />
-                        <span className="px-2">{days}d</span> : <span className="px-2">{hours}h</span> : <span className="px-2">{minutes}m</span> : <span className="px-2">{seconds}s</span>
-                      </div>
-                    )} />
-                  </motion.div>
+                  <motion.div className="mt-3 p-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-md shadow-md flex items-center justify-center text-sm sm:text-base flex-wrap sm:flex-nowrap">
+  <Clock size={16} className="mr-2 hidden sm:inline-block" />
+  <Countdown
+    date={new Date(`${booking.slot.date}T${booking.slot.startTime}`)}
+    renderer={({ days, hours, minutes, seconds }) => (
+      <div className="flex gap-1 sm:gap-2">
+        <span className="px-1 sm:px-2">{days}d</span>:
+        <span className="px-1 sm:px-2">{hours}h</span>:
+        <span className="px-1 sm:px-2">{minutes}m</span>:
+        <span className="px-1 sm:px-2">{seconds}s</span>
+      </div>
+    )}
+  />
+</motion.div>
+
                 </motion.div>
               ))}
             </motion.div>
