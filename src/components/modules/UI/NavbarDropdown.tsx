@@ -14,22 +14,9 @@ import { useRouter } from "next/navigation";
 import { logout } from "@/src/services/logout";
 // import { useEffect, useState } from "react";
 
-export default function NavbarDropdown() {
-  // const [user, setUser] = useState(null);
+export default function NavbarDropdown({user}:{user:string}) {
+ 
   const router = useRouter();
-
-  // // Function to fetch the user data
-  // const fetchUser = async () => {
-  //   const userData = await getCurrentUser();
-
-  //   setUser(userData); // Update user state
-  // };
-
-  // // Fetch the user data once the component mounts
-  // useEffect(() => {
-  //   fetchUser();
-  // }, []);
-
   const handleLogout = async () => {
     await logout();
     router.push("/login");
@@ -42,7 +29,7 @@ export default function NavbarDropdown() {
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Avatar className="cursor-pointer" name="joe" />
+        <Avatar className="cursor-pointer" name={user} />
       </DropdownTrigger>
 
       <DropdownMenu aria-label="Static Actions">
@@ -52,12 +39,6 @@ export default function NavbarDropdown() {
         >
           Dashboard
         </DropdownItem>
-        {/* <DropdownItem
-          key="settings"
-          onPress={() => handleNavigation("/dashboard/settings")}
-        >
-          Settings
-        </DropdownItem> */}
         <DropdownItem
           key="logout"
           className="text-danger"

@@ -11,7 +11,7 @@ type Role = keyof typeof roleBasedRoutes;
 
 const roleBasedRoutes = {
   user: [/^\/dashboard/, /^\/services\/[^/]+\/booking$/],
-  admin: [/^\/admin/],
+  admin: [/^\/admin/,/^\/dashboard/,],
 };
 
 // This function can be marked `async` if using `await` inside

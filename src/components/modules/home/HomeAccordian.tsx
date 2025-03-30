@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 "use client";
 
 import { Accordion, AccordionItem, Avatar } from "@nextui-org/react";
@@ -6,7 +7,7 @@ export default function HomeAccordion() {
   
   return (
     <div className="max-w-md md:max-w-6xl mx-auto mt-10">
-      <Accordion selectionMode="multiple" aria-label="User Information">
+      <Accordion aria-label="User Information" selectionMode="multiple" >
         <AccordionItem
           key="1"
           aria-label="Chung Miller"
@@ -38,7 +39,7 @@ export default function HomeAccordion() {
           subtitle="3 incomplete steps"
           title="Janelle Lenard"
         >
-          Janelle Lenard is a front-end developer with a passion for creating beautiful and responsive user interfaces. She is currently working on improving the user experience of the company's main product by making the design more intuitive and user-friendly.
+          Janelle Lenard is a front-end developer with a passion for creating beautiful and responsive user interfaces. She is currently working on improving the user experience of the companys main product by making the design more intuitive and user-friendly.
         </AccordionItem>
 
         <AccordionItem

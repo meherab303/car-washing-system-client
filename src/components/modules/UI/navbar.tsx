@@ -60,7 +60,7 @@ export const Navbar = async () => {
         </NavbarItem>
         {user?.userEmail ? (
           <NavbarItem className="hidden sm:flex gap-2">
-            <NavbarDropdown />
+            <NavbarDropdown user={user?.role}/>
           </NavbarItem>
         ) : (
           <NavbarItem className="hidden sm:flex gap-2">

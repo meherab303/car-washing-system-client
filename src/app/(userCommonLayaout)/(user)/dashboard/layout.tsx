@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import type { Metadata } from "next";
+import { useEffect, useState } from "react";
+
 import Container from "@/src/components/modules/UI/container";
 import Sidebar from "@/src/components/modules/UI/Sidebar";
 import { Menu } from "lucide-react";
+import { getCurrentUser } from "@/src/services/currentUser";
+import { TAuthUser } from "@/src/types";
 
 export default function DashboardLayout({
   children,
@@ -12,6 +14,20 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }>) {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
+  const [user,setUser]=useState<TAuthUser | null>(null)
+  
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const currentUser = await getCurrentUser();
+        setUser(currentUser);
+      } catch (error) {
+        console.error("Failed to fetch user:", error);
+      }
+    };
+  
+    fetchUser();
+  }, [])
 
   return (
     <Container>
@@ -33,7 +49,7 @@ export default function DashboardLayout({
           >
             ✕
           </button>
-          <Sidebar />
+          <Sidebar user={user?.role} />
         </div>
 
         {/* Main Content */}
