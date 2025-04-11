@@ -8,8 +8,9 @@ export const getAllUsers = async () => {
     
     const response = await fetch(`${envConfig.baseApi}/users`, {
       headers: {
-        Authorization: `${token}`,
+        Authorization: `${token}`, 
       },
+
     });
 
     if (!response.ok) throw new Error("Failed to fetch users");
