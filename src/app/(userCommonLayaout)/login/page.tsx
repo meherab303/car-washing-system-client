@@ -16,7 +16,6 @@ import { useUser } from "@/src/context/user.provider";
 import { useUserLogin } from "@/src/hooks/auth.hook";
 import { useEffect } from "react";
 
-// Define validation schema
 type LoginFormData = z.infer<typeof loginValidationSchema>;
 
 const LoginPage = () => {
@@ -29,22 +28,19 @@ const LoginPage = () => {
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginValidationSchema),
   });
-  // 
+
   const searchParams = useSearchParams();
- 
-  const {user,setIsLoading: userLoading } = useUser();
-  console.log(user,"provider user")
+  const { user, setIsLoading: userLoading } = useUser();
 
   const redirect = searchParams.get("redirect");
-
   const { mutate: handleUserLogin, isPending, isSuccess } = useUserLogin();
 
-  // Submit Handler
   const onSubmit = async (data: LoginFormData) => {
     handleUserLogin(data);
     userLoading(true);
-    reset()
+    reset();
   };
+
   useEffect(() => {
     if (!isPending && isSuccess) {
       if (redirect) {
@@ -57,7 +53,7 @@ const LoginPage = () => {
 
   return (
     <div
-      className="flex  justify-center items-center min-h-screen bg-gray-200 p-4"
+      className="flex justify-center items-center min-h-screen bg-gray-200 p-4"
       style={{
         backgroundImage:
           "linear-gradient(90deg, rgba(0, 0, 0, 0.7), transparent), url('/carwash.jpg')",
@@ -65,14 +61,14 @@ const LoginPage = () => {
     >
       <motion.div
         animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-4xl flex  bg-white rounded-2xl shadow-lg overflow-hidden"
+        className="w-full flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden max-w-4xl"
         initial={{ opacity: 0, y: -20 }}
         transition={{ duration: 0.5 }}
       >
         {/* Left Side - Welcome Message */}
-        <div className="w-1/2 bg-blue-500 flex flex-col justify-center items-center text-white p-10 rounded-r-full  ">
+        <div className="w-full md:w-1/2 bg-blue-500 flex flex-col justify-center items-center text-white p-8 md:p-10 rounded-b-2xl md:rounded-r-full md:rounded-bl-none">
           <h2 className="text-3xl font-bold mb-4">Hello, Welcome!</h2>
-          <p className="mb-6"> Don't have an account?</p>
+          <p className="mb-6">Don't have an account?</p>
           <Link href="/register">
             <Button className="bg-white text-blue-500 px-6 py-2 rounded-lg font-semibold shadow-md hover:bg-gray-100 transition-all">
               Register
@@ -81,7 +77,7 @@ const LoginPage = () => {
         </div>
 
         {/* Right Side - Login Form */}
-        <Card className="w-1/2 p-10 shadow-none  bg-white rounded-l-none">
+        <Card className="w-full md:w-1/2 p-6 md:p-10 shadow-none bg-white rounded-t-2xl md:rounded-l-none">
           <CardBody>
             <h2 className="text-2xl text-black font-bold text-center mb-6">
               Login
@@ -143,25 +139,6 @@ const LoginPage = () => {
                 </Button>
               </motion.div>
             </form>
-
-            {/* Social Login */}
-            {/* <p className="text-center text-sm mt-4 text-black">
-              or login with social platforms
-            </p>
-            <div className="flex justify-center space-x-4 mt-3">
-              <Button isIconOnly className="p-3 shadow-md" color="default">
-                <span className="text-lg">G</span>
-              </Button>
-              <Button isIconOnly className="p-3 shadow-md" color="default">
-                <span className="text-lg">f</span>
-              </Button>
-              <Button isIconOnly className="p-3 shadow-md" color="default">
-                <span className="text-lg">G</span>
-              </Button>
-              <Button isIconOnly className="p-3 shadow-md" color="default">
-                <span className="text-lg">in</span>
-              </Button>
-            </div> */}
           </CardBody>
         </Card>
       </motion.div>

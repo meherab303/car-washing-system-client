@@ -14,7 +14,7 @@ export default async function Servicesss() {
       <div className="section-title my-8">
         <h2 className="mb-2 text-center text-2xl">Recent Services</h2>
         <p className="text-center">
-          A list of items that have been recently found and reported.
+        Explore our latest car wash services completed with care and precision.
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-5 place-items-center">

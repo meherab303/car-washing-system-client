@@ -10,6 +10,7 @@ import {
   DropdownTrigger,
 } from "@heroui/react";
 import { useRouter } from "next/navigation";
+import { User } from "lucide-react";
 
 import { logout } from "@/src/services/logout";
 // import { useEffect, useState } from "react";
@@ -29,7 +30,10 @@ export default function NavbarDropdown({user}:{user:string}) {
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Avatar className="cursor-pointer" name={user} />
+      <Avatar
+    className="cursor-pointer"
+    icon={<User className="w-5 h-5 text-white" />}
+  />
       </DropdownTrigger>
 
       <DropdownMenu aria-label="Static Actions">
