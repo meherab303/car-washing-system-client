@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 
 import createUser from "../services/createUser";
 import { loginUser } from "../services/loginUser";
+import { forgetPassword } from "../services/forgetPassword";
 
 interface RegisterResponse {
   success: boolean;
@@ -71,3 +72,18 @@ export const useUserLogin = () => {
     },
   });
 };
+
+
+
+export const useForgetPassword = () => {
+  return useMutation({
+    mutationFn: forgetPassword,
+    onSuccess: () => {
+      toast.success("Reset link sent to your email.");
+    },
+    onError: (error: any) => {
+      toast.error(error?.message || "Failed to send reset link");
+    },
+  });
+};
+

@@ -122,7 +122,7 @@ const LoginPage = () => {
                 </Checkbox>
                 <Link
                   className="text-blue-500 hover:underline text-sm"
-                  href="/forgot-password"
+                  href="/forget-password"
                 >
                   Forgot Password?
                 </Link>
@@ -145,7 +145,7 @@ const LoginPage = () => {
             </form>
 
             {/* Social Login */}
-            <p className="text-center text-sm mt-4 text-black">
+            {/* <p className="text-center text-sm mt-4 text-black">
               or login with social platforms
             </p>
             <div className="flex justify-center space-x-4 mt-3">
@@ -161,7 +161,7 @@ const LoginPage = () => {
               <Button isIconOnly className="p-3 shadow-md" color="default">
                 <span className="text-lg">in</span>
               </Button>
-            </div>
+            </div> */}
           </CardBody>
         </Card>
       </motion.div>
