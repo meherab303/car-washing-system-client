@@ -49,7 +49,7 @@ export default function DashboardLayout({
           >
             ✕
           </button>
-          <Sidebar user={user?.role} />
+          <Sidebar userRole={user?.role} />
         </div>
 
         {/* Main Content */}

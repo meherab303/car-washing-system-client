@@ -1,8 +1,6 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
-import { getAllBookings } from "@/src/services/getAllBookings";
-
+import { useGetAllBookings } from "@/src/hooks/user.hook";
 import {
   Table,
   TableHeader,
@@ -12,10 +10,9 @@ import {
   TableCell,
   Spinner,
 } from "@nextui-org/react";
-import { useGetAllBookings } from "@/src/hooks/user.hook";
 
 const AllBookingsPage = () => {
-  const{data:bookings,isLoading,isError}=useGetAllBookings()
+  const { data: bookings, isLoading, isError } = useGetAllBookings();
 
   if (isLoading) {
     return (
@@ -34,36 +31,44 @@ const AllBookingsPage = () => {
   }
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">All Bookings</h1>
+    <div className="p-4 md:p-6">
+      <h1 className="text-xl md:text-2xl font-bold mb-4 text-center md:text-left">
+        All Bookings
+      </h1>
 
-      <Table aria-label="All Bookings Table">
-        <TableHeader>
-          <TableColumn>Email</TableColumn>
-          <TableColumn>Phone</TableColumn>
-          <TableColumn>Service</TableColumn>
-          <TableColumn>Price</TableColumn>
-          <TableColumn>Date</TableColumn>
-          <TableColumn>startTime</TableColumn>
-          <TableColumn>Status</TableColumn>
-          <TableColumn>R.Plate</TableColumn>
-        </TableHeader>
-        <TableBody>
-          {bookings?.map((booking) => (
-            <TableRow key={booking._id}>
-              
-              <TableCell>{booking?.customer?.email|| "N/A"}</TableCell>
-              <TableCell>{booking?.customer?.phone|| "N/A"}</TableCell>
-              <TableCell>{booking.service.name}</TableCell>
-              <TableCell>{booking.service.price}$</TableCell>
-              <TableCell>{booking.slot.date}</TableCell>
-              <TableCell>{booking.slot.startTime}</TableCell>
-              <TableCell>{booking.vehicleType}</TableCell>
-              <TableCell>{booking.registrationPlate}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      <div className="overflow-x-auto">
+        <Table
+          aria-label="All Bookings Table"
+          isStriped
+          removeWrapper
+          className="min-w-[800px]"
+        >
+          <TableHeader>
+            <TableColumn>Email</TableColumn>
+            <TableColumn>Phone</TableColumn>
+            <TableColumn>Service</TableColumn>
+            <TableColumn>Price</TableColumn>
+            <TableColumn>Date</TableColumn>
+            <TableColumn>Start Time</TableColumn>
+            <TableColumn>Type</TableColumn>
+            <TableColumn>R.Plate</TableColumn>
+          </TableHeader>
+          <TableBody>
+            {bookings?.map((booking) => (
+              <TableRow key={booking._id}>
+                <TableCell>{booking?.customer?.email || "N/A"}</TableCell>
+                <TableCell>{booking?.customer?.phone || "N/A"}</TableCell>
+                <TableCell>{booking.service.name}</TableCell>
+                <TableCell>{booking.service.price}$</TableCell>
+                <TableCell>{booking.slot.date}</TableCell>
+                <TableCell>{booking.slot.startTime}</TableCell>
+                <TableCell>{booking.vehicleType}</TableCell>
+                <TableCell>{booking.registrationPlate}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
     </div>
   );
 };

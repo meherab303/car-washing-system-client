@@ -15,9 +15,9 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
+  Spinner,
 } from "@nextui-org/react";
 import { TrashIcon } from "lucide-react";
-
 
 import { useDeleteUser, useGetAllUsers } from "@/src/hooks/user.hook";
 
@@ -40,37 +40,51 @@ export default function UsersPage() {
   };
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">User Management</h1>
+    <div className="p-4 md:p-6">
+      <h1 className="text-xl md:text-2xl font-bold mb-4 text-center md:text-left">
+        User Management
+      </h1>
 
-      <Table aria-label="Users Table" isStriped isHeaderSticky>
-        <TableHeader>
-          <TableColumn>Role</TableColumn>
-          <TableColumn>Phone</TableColumn>
-          <TableColumn>Email</TableColumn>
-          <TableColumn>Address</TableColumn>
-          <TableColumn>Action</TableColumn>
-        </TableHeader>
-        <TableBody isLoading={isLoading}>
-          {users.map((user) => (
-            <TableRow key={user._id}>
-              <TableCell>{user.role}</TableCell>
-              <TableCell>{user.phone}</TableCell>
-              <TableCell>{user.email}</TableCell>
-              <TableCell>{user.address}</TableCell>
-              <TableCell>
-                <Button
-                  color="danger"
-                  isIconOnly
-                  onPress={() => handleOpenModal(user._id)}
-                >
-                  <TrashIcon size={16} />
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      <div className="overflow-x-auto rounded-lg">
+        <Table
+          aria-label="Users Table"
+          isStriped
+          removeWrapper
+          className="min-w-[700px]"
+        >
+          <TableHeader>
+            <TableColumn>Role</TableColumn>
+            <TableColumn>Phone</TableColumn>
+            <TableColumn>Email</TableColumn>
+            <TableColumn>Address</TableColumn>
+            <TableColumn>Action</TableColumn>
+          </TableHeader>
+
+          <TableBody
+            isLoading={isLoading}
+            loadingContent={<Spinner label="Loading users..." />}
+          >
+            {users?.map((user) => (
+              <TableRow key={user._id}>
+                <TableCell>{user.role}</TableCell>
+                <TableCell>{user.phone}</TableCell>
+                <TableCell>{user.email}</TableCell>
+                <TableCell>{user.address}</TableCell>
+                <TableCell>
+                  <Button
+                    color="danger"
+                    isIconOnly
+                    size="sm"
+                    onPress={() => handleOpenModal(user._id)}
+                  >
+                    <TrashIcon size={16} />
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
 
       {/* Delete Confirmation Modal */}
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="center">
