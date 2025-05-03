@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { useGetUserData } from "@/src/hooks/user.hook";
-import { useUser } from "@/src/context/user.provider"; 
+import { useUser } from "@/src/context/user.provider";
 import Link from "next/link";
 import { Avatar, CircularProgress } from "@nextui-org/react";
 
@@ -36,47 +36,58 @@ const Sidebar = ({ userRole }: { userRole?: string }) => {
               indicator: "stroke-[#5d6bff]",
             }}
           />
-       <Avatar className="w-[70px] h-[70px] bg-gray-200 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className="h-10 w-10 text-gray-600"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M5.121 17.804A10 10 0 1117.805 5.12M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-    />
-  </svg>
-</Avatar>
+          <Avatar className="w-[70px] h-[70px] bg-gray-200 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-10 w-10 text-gray-600"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5.121 17.804A10 10 0 1117.805 5.12M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+          </Avatar>
         </div>
 
-        <h2 className="text-lg font-bold mt-4 text-purple-300">{userData?.name }</h2>
+        <h2 className="text-lg font-bold mt-4 text-purple-300">
+          {userData?.name}
+        </h2>
         <p className="text-sm text-gray-400">{userData?.role}</p>
-        <p className="text-xs text-gray-400">{userData?.email }</p>
+        <p className="text-xs text-gray-400">{userData?.email}</p>
         <p className="text-sm text-gray-400">{userData?.phone}</p>
       </div>
 
       {/* Navigation */}
       <ul className="space-y-3">
         <li>
-          <Link href="/dashboard/profile" className="flex items-center gap-2 hover:text-purple-400">
+          <Link
+            href="/dashboard/profile"
+            className="flex items-center gap-2 hover:text-purple-400"
+          >
             <span>👤</span> Profile
           </Link>
         </li>
 
         {userRole === "user" ? (
           <li>
-            <Link href="/dashboard/my-bookings" className="flex items-center gap-2 hover:text-purple-400">
+            <Link
+              href="/dashboard/my-bookings"
+              className="flex items-center gap-2 hover:text-purple-400"
+            >
               <span>📘</span> My Bookings
             </Link>
           </li>
         ) : (
           <li>
-            <Link href="/dashboard/all-bookings" className="flex items-center gap-2 hover:text-purple-400">
+            <Link
+              href="/dashboard/all-bookings"
+              className="flex items-center gap-2 hover:text-purple-400"
+            >
               <span>📚</span> All Bookings
             </Link>
           </li>
@@ -85,12 +96,18 @@ const Sidebar = ({ userRole }: { userRole?: string }) => {
         {userRole === "admin" && (
           <>
             <li>
-              <Link href="/dashboard/All-users" className="flex items-center gap-2 hover:text-purple-400">
+              <Link
+                href="/dashboard/All-users"
+                className="flex items-center gap-2 hover:text-purple-400"
+              >
                 <span>👥</span> All Users
               </Link>
             </li>
             <li>
-              <Link href="/dashboard/create-service" className="flex items-center gap-2 hover:text-purple-400">
+              <Link
+                href="/dashboard/create-service"
+                className="flex items-center gap-2 hover:text-purple-400"
+              >
                 <span>➕</span> Create Service
               </Link>
             </li>

@@ -5,10 +5,9 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
   size?: number;
 };
 
-export type TAuthUser= {
+export type TAuthUser = {
   userEmail: string;
-  role: "user" | "admin" 
-  iat: number; 
-  exp: number; 
-}
-
+  role: "user" | "admin";
+  iat: number;
+  exp: number;
+};

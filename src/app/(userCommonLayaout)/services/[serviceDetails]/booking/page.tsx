@@ -3,10 +3,13 @@
 import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 
+import {
+  useBookingSlots,
+  useCreateBooking,
+  useGetUserData,
+} from "@/src/hooks/user.hook";
 
-import { useBookingSlots, useCreateBooking, useGetUserData } from "@/src/hooks/user.hook";
-
-import { BookingFormData,} from "@/src/types/BookingTypes";
+import { BookingFormData } from "@/src/types/BookingTypes";
 import { useUser } from "@/src/context/user.provider";
 import BookingPageForm from "@/src/components/modules/booking/BookingPageForm";
 import NoBookingDataAvailable from "@/src/components/modules/booking/NoBookingDataAvailable";
@@ -21,15 +24,15 @@ const BookingPage = () => {
   const { user } = useUser();
   const { data: userData } = useGetUserData(user?.userEmail);
 
-  const searchParamsInfo={
+  const searchParamsInfo = {
     serviceId,
     serviceName,
     duration,
     price,
     serviceImage,
-    userData
-  }
-  
+    userData,
+  };
+
   const {
     register,
     handleSubmit,
@@ -38,31 +41,31 @@ const BookingPage = () => {
   } = useForm<BookingFormData>();
 
   // Fetch available slots dynamically
-  const { data: slots = [], isLoading}= useBookingSlots(serviceId as string);
-  const { mutate:handleBooking,isPending,isSuccess} = useCreateBooking();
-  
-const formdetails={
-  searchParamsInfo,
-  handleSubmit,register,control,  formState: { errors },
-  handleBooking,
-  slots
+  const { data: slots = [], isLoading } = useBookingSlots(serviceId as string);
+  const { mutate: handleBooking, isPending, isSuccess } = useCreateBooking();
 
-}
+  const formdetails = {
+    searchParamsInfo,
+    handleSubmit,
+    register,
+    control,
+    formState: { errors },
+    handleBooking,
+    slots,
+  };
 
- if(isLoading){
-  return <p>loading</p>
-}
+  if (isLoading) {
+    return <p>loading</p>;
+  }
 
-if (isPending) {
-  return (
-    <p>loading....</p>
+  if (isPending) {
+    return <p>loading....</p>;
+  }
+  return searchParamsInfo.serviceId && searchParamsInfo.userData ? (
+    <BookingPageForm formdetails={formdetails} />
+  ) : (
+    <NoBookingDataAvailable />
   );
-}
-return searchParamsInfo.serviceId && searchParamsInfo.userData ? (
-  <BookingPageForm formdetails={formdetails} />
-) : (
-  <NoBookingDataAvailable/>
-);
 };
 
 export default BookingPage;

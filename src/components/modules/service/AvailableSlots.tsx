@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
 
-
 import { SlotBooking } from "@/src/types/slotBookingTypes";
 
 const AvailableSlots = (slots: { slots: SlotBooking[] }) => {

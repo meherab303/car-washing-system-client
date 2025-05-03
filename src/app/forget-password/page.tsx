@@ -29,7 +29,6 @@ const ForgetPasswordPage = () => {
           <input
             id="email"
             type="email"
-            
             placeholder="Enter your email"
             className="input text-default-600 input-bordered w-full"
             value={email}

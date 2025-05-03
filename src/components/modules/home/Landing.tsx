@@ -23,14 +23,13 @@ export default function Landing() {
           transition={{ type: "spring", stiffness: 60, damping: 10 }}
           className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-wider drop-shadow-2xl 
           bg-gradient-to-r from-blue-400 to-blue-700 text-transparent bg-clip-text"
-
         >
           <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 1.5 }}
           >
-           <span className="text-blue-500">Premium</span>
+            <span className="text-blue-500">Premium</span>
           </motion.span>
           Car Wash
         </motion.h1>
@@ -48,4 +47,3 @@ export default function Landing() {
     </div>
   );
 }
-

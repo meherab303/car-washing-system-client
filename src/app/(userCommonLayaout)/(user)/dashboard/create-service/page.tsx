@@ -15,8 +15,10 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 import { createService } from "@/src/services/createService";
-import { createServiceSchema, TCreateServiceInput } from "@/src/schemas/createServiceSchema";
-
+import {
+  createServiceSchema,
+  TCreateServiceInput,
+} from "@/src/schemas/createServiceSchema";
 
 const CreateServicePage = () => {
   const router = useRouter();
@@ -42,9 +44,14 @@ const CreateServicePage = () => {
   return (
     <div className="p-6 max-w-xl mx-auto">
       <Card>
-        <CardHeader className="text-lg font-bold">Create New Service</CardHeader>
+        <CardHeader className="text-lg font-bold">
+          Create New Service
+        </CardHeader>
         <CardBody>
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-4"
+          >
             <Input
               label="Service Name"
               {...register("name")}
@@ -86,4 +93,3 @@ const CreateServicePage = () => {
 };
 
 export default CreateServicePage;
-

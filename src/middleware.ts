@@ -11,7 +11,7 @@ type Role = keyof typeof roleBasedRoutes;
 
 const roleBasedRoutes = {
   user: [/^\/dashboard/, /^\/services\/[^/]+\/booking$/],
-  admin: [/^\/admin/,/^\/dashboard/,],
+  admin: [/^\/admin/, /^\/dashboard/],
 };
 
 // This function can be marked `async` if using `await` inside
@@ -24,7 +24,9 @@ export async function middleware(request: NextRequest) {
     if (AuthRoutes.includes(pathname)) {
       return NextResponse.next();
     } else {
-      return NextResponse.redirect(new URL(`/login?redirect=${pathname}`, request.url));
+      return NextResponse.redirect(
+        new URL(`/login?redirect=${pathname}`, request.url),
+      );
     }
   }
   if (user?.role && roleBasedRoutes[user?.role as Role]) {
@@ -40,5 +42,12 @@ export async function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/dashboard", "/dashboard/:page","/admin", "/login", "/register","/services/:serviceId/booking"],
+  matcher: [
+    "/dashboard",
+    "/dashboard/:page",
+    "/admin",
+    "/login",
+    "/register",
+    "/services/:serviceId/booking",
+  ],
 };

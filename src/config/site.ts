@@ -38,5 +38,14 @@ export const siteConfig = {
       label: "Contact Us",
       href: "/contact",
     },
+    {
+      label: "Dashboard",
+      href: "/dashboard",
+    },
+    {
+      label: "Logout",
+      href: "/",
+    },
+    { label: "Login", href: "/login" },
   ],
 };

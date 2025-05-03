@@ -73,8 +73,6 @@ export const useUserLogin = () => {
   });
 };
 
-
-
 export const useForgetPassword = () => {
   return useMutation({
     mutationFn: forgetPassword,
@@ -86,4 +84,3 @@ export const useForgetPassword = () => {
     },
   });
 };
-

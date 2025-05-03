@@ -1,16 +1,14 @@
 import envConfig from "@/src/config/envConfig";
 import { getToken } from "@/src/utils/getToken";
 
-
 export const getAllUsers = async () => {
   try {
     const token = getToken();
-    
+
     const response = await fetch(`${envConfig.baseApi}/users`, {
       headers: {
-        Authorization: `${token}`, 
+        Authorization: `${token}`,
       },
-
     });
 
     if (!response.ok) throw new Error("Failed to fetch users");

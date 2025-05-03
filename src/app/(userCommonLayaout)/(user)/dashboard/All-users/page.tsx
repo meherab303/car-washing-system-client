@@ -93,7 +93,8 @@ export default function UsersPage() {
             <>
               <ModalHeader>Confirm Deletion</ModalHeader>
               <ModalBody>
-                Are you sure you want to delete this user? This action cannot be undone.
+                Are you sure you want to delete this user? This action cannot be
+                undone.
               </ModalBody>
               <ModalFooter>
                 <Button color="default" variant="light" onPress={onClose}>

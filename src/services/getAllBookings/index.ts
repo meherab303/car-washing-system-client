@@ -2,7 +2,6 @@ import envConfig from "@/src/config/envConfig";
 import { TBooking } from "@/src/types/getMyBookingsType";
 import { getToken } from "@/src/utils/getToken";
 
-
 export const getAllBookings = async (): Promise<TBooking[]> => {
   const token = getToken();
 
@@ -19,5 +18,5 @@ export const getAllBookings = async (): Promise<TBooking[]> => {
   }
 
   const data = await response.json();
-  return data?.data; 
-}
+  return data?.data;
+};

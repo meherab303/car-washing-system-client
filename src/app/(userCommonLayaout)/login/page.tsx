@@ -7,7 +7,6 @@ import { z } from "zod";
 import { Input, Button, Card, CardBody, Checkbox } from "@nextui-org/react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import toast from "react-hot-toast";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import loginValidationSchema from "@/src/schemas/login.schemas";
@@ -30,7 +29,7 @@ const LoginPage = () => {
   });
 
   const searchParams = useSearchParams();
-  const { user, setIsLoading: userLoading } = useUser();
+  const { setIsLoading: userLoading } = useUser();
 
   const redirect = searchParams.get("redirect");
   const { mutate: handleUserLogin, isPending, isSuccess } = useUserLogin();

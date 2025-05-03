@@ -14,8 +14,8 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }>) {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
-  const [user,setUser]=useState<TAuthUser | null>(null)
-  
+  const [user, setUser] = useState<TAuthUser | null>(null);
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -25,9 +25,9 @@ export default function DashboardLayout({
         console.error("Failed to fetch user:", error);
       }
     };
-  
+
     fetchUser();
-  }, [])
+  }, []);
 
   return (
     <Container>

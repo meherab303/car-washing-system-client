@@ -20,6 +20,7 @@ import { siteConfig } from "@/src/config/site";
 import { ThemeSwitch } from "@/src/components/modules/UI/theme-switch";
 import { Logo } from "@/src/components/icons";
 import { getCurrentUser } from "@/src/services/currentUser";
+import NavbarMenuContent from "./NavbarMenuContent";
 
 export const Navbar = async () => {
   const user = await getCurrentUser();
@@ -60,7 +61,7 @@ export const Navbar = async () => {
         </NavbarItem>
         {user?.userEmail ? (
           <NavbarItem className="hidden sm:flex gap-2">
-            <NavbarDropdown user={user?.role}/>
+            <NavbarDropdown user={user?.role} />
           </NavbarItem>
         ) : (
           <NavbarItem className="hidden sm:flex gap-2">
@@ -75,25 +76,7 @@ export const Navbar = async () => {
       </NavbarContent>
 
       <NavbarMenu>
-        <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                      ? "danger"
-                      : "foreground"
-                }
-                href={item.href}
-                size="lg"
-              >
-                {item.label}
-              </Link>
-            </NavbarMenuItem>
-          ))}
-        </div>
+        <NavbarMenuContent isLoggedIn={!!user?.userEmail} />
       </NavbarMenu>
     </HeroUINavbar>
   );

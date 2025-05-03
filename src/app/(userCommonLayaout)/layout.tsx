@@ -8,7 +8,7 @@ export default function layout({ children }: { children: React.ReactNode }) {
     <div className="relative flex flex-col ">
       <Navbar />
       <main className="mb-10">{children}</main>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

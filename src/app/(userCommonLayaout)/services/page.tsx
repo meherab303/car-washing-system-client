@@ -16,8 +16,12 @@ export default async function Servicesss() {
     <Container>
       {/* Hero Section */}
       <div className="text-center  ">
-        <h1 className="text-4xl font-bold mb-2 text-default-600"><span className="text-blue-500">Premium </span>Car Services</h1>
-        <p className="text-sm md:text-base font-medium text-default-600">Quality care for your car, anytime, anywhere!</p>
+        <h1 className="text-4xl font-bold mb-2 text-default-600">
+          <span className="text-blue-500">Premium </span>Car Services
+        </h1>
+        <p className="text-sm md:text-base font-medium text-default-600">
+          Quality care for your car, anytime, anywhere!
+        </p>
       </div>
 
       {/* Services Grid */}

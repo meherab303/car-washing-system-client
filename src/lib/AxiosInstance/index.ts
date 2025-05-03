@@ -39,7 +39,7 @@ axiosInstance.interceptors.response.use(
       const accessToken = res.data.accessToken;
 
       config.headers["Authorization"] = accessToken;
-      const cookieStore=await cookies()
+      const cookieStore = await cookies();
 
       cookieStore.set("accessToken", accessToken);
 
@@ -47,7 +47,7 @@ axiosInstance.interceptors.response.use(
     } else {
       return Promise.reject(error);
     }
-  }
+  },
 );
 
 export default axiosInstance;

@@ -29,11 +29,10 @@ const ResetPasswordPage = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: token, 
+          Authorization: token,
         },
-        body: JSON.stringify({ email, newPassword }), 
+        body: JSON.stringify({ email, newPassword }),
       });
-      
 
       const data = await res.json();
 
@@ -56,7 +55,9 @@ const ResetPasswordPage = () => {
         onSubmit={handleReset}
         className="bg-default-600 shadow-2xl p-6 rounded space-y-4 w-full max-w-md"
       >
-        <h2 className="text-xl font-semibold text-center text-blue-500">Reset Your Password</h2>
+        <h2 className="text-xl font-semibold text-center text-blue-500">
+          Reset Your Password
+        </h2>
         <input
           type="password"
           value={newPassword}

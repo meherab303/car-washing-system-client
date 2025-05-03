@@ -70,13 +70,13 @@ const UpdateProfile = () => {
 
   return (
     <UpdateProfileForm
-    register={register}
-    errors={errors}
-    handleSubmit={handleSubmit}
-    onSubmit={onSubmit}
-    isFormChanged={isFormChanged}
-    isPending={isPending}
-  />
+      register={register}
+      errors={errors}
+      handleSubmit={handleSubmit}
+      onSubmit={onSubmit}
+      isFormChanged={isFormChanged}
+      isPending={isPending}
+    />
   );
 };
 

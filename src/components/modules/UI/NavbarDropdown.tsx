@@ -1,7 +1,6 @@
 /* eslint-disable prettier/prettier */
 "use client";
 
-
 import {
   Avatar,
   Dropdown,
@@ -15,8 +14,7 @@ import { User } from "lucide-react";
 import { logout } from "@/src/services/logout";
 // import { useEffect, useState } from "react";
 
-export default function NavbarDropdown({user}:{user:string}) {
- 
+export default function NavbarDropdown({ user }: { user: string }) {
   const router = useRouter();
   const handleLogout = async () => {
     await logout();
@@ -30,10 +28,10 @@ export default function NavbarDropdown({user}:{user:string}) {
   return (
     <Dropdown>
       <DropdownTrigger>
-      <Avatar
-    className="cursor-pointer"
-    icon={<User className="w-5 h-5 text-white" />}
-  />
+        <Avatar
+          className="cursor-pointer"
+          icon={<User className="w-5 h-5 text-white" />}
+        />
       </DropdownTrigger>
 
       <DropdownMenu aria-label="Static Actions">

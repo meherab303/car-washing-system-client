@@ -13,7 +13,7 @@ export default function layout({
     <>
       {children}
       {recentServices}
-      <HomeAccordion/>
+      <HomeAccordion />
     </>
   );
 }

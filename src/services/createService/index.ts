@@ -2,7 +2,6 @@ import envConfig from "@/src/config/envConfig";
 import { TService } from "@/src/types/carServiceTypes";
 import { getToken } from "@/src/utils/getToken";
 
-
 export const createService = async (data: TService) => {
   const token = getToken();
 
