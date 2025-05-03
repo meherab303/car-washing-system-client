@@ -4,16 +4,22 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Input, Button, Card, CardBody, Checkbox } from "@nextui-org/react";
-import { motion } from "framer-motion";
+import {
+  Input,
+  Button,
+  Card,
+  CardBody,
+  Checkbox,
+} from "@nextui-org/react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import loginValidationSchema from "@/src/schemas/login.schemas";
-import { loginUser } from "@/src/services/loginUser";
 import { useUser } from "@/src/context/user.provider";
 import { useUserLogin } from "@/src/hooks/auth.hook";
 import { useEffect } from "react";
+
+import "@/src/styles/login.css";
 
 type LoginFormData = z.infer<typeof loginValidationSchema>;
 
@@ -58,12 +64,7 @@ const LoginPage = () => {
           "linear-gradient(90deg, rgba(0, 0, 0, 0.7), transparent), url('/carwash.jpg')",
       }}
     >
-      <motion.div
-        animate={{ opacity: 1, y: 0 }}
-        className="w-full flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden max-w-4xl"
-        initial={{ opacity: 0, y: -20 }}
-        transition={{ duration: 0.5 }}
-      >
+      <div className="fade-in-up w-full flex flex-col md:flex-row bg-white rounded-2xl shadow-lg overflow-hidden max-w-4xl">
         {/* Left Side - Welcome Message */}
         <div className="w-full md:w-1/2 bg-blue-500 flex flex-col justify-center items-center text-white p-8 md:p-10 rounded-b-2xl md:rounded-r-full md:rounded-bl-none">
           <h2 className="text-3xl font-bold mb-4">Hello, Welcome!</h2>
@@ -112,7 +113,7 @@ const LoginPage = () => {
 
               {/* Remember Me & Forgot Password */}
               <div className="flex justify-between items-center">
-                <Checkbox className="hover:none" color="primary">
+                <Checkbox color="primary">
                   <p className="text-black">Remember me</p>
                 </Checkbox>
                 <Link
@@ -124,23 +125,20 @@ const LoginPage = () => {
               </div>
 
               {/* Submit Button */}
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
+              <div>
                 <Button
-                  className="w-full bg-blue-500 hover:bg-blue-600 transition-all text-white py-3 rounded-lg"
+                  className="w-full bg-blue-500 hover:bg-blue-600 hover:scale-105 active:scale-95 transition-transform duration-200 text-white py-3 rounded-lg"
                   color="primary"
                   isDisabled={isSubmitting}
                   type="submit"
                 >
                   {isSubmitting ? "Logging in..." : "Login"}
                 </Button>
-              </motion.div>
+              </div>
             </form>
           </CardBody>
         </Card>
-      </motion.div>
+      </div>
     </div>
   );
 };
