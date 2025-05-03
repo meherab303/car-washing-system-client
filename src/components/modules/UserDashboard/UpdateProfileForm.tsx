@@ -1,5 +1,4 @@
 import { Button, Card, Input } from "@heroui/react";
-import { motion } from "framer-motion";
 import { FiSave } from "react-icons/fi";
 import { UpdateFormField } from "./UpdateFormFiled";
 
@@ -20,13 +19,7 @@ const UpdateProfileForm = ({
   isFormChanged,
   isPending,
 }: UpdateProfileFormProps) => (
-  <motion.div
-    className="max-w-3xl mx-auto p-6"
-    initial={{ opacity: 0, y: -100 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: 100 }}
-    transition={{ duration: 1 }}
-  >
+  <div className="max-w-3xl mx-auto p-6">
     <h1 className="text-2xl font-bold text-center mb-4">Update Profile</h1>
     <Card className="p-6">
       <form
@@ -66,7 +59,7 @@ const UpdateProfileForm = ({
           disabled
         />
 
-        <div className="col-span-1 sm:col-span-2 w-full  flex  justify-center md:justify-end">
+        <div className="col-span-1 sm:col-span-2 w-full flex justify-center md:justify-end">
           <Button
             type="submit"
             disabled={!isFormChanged || isPending}
@@ -77,7 +70,7 @@ const UpdateProfileForm = ({
         </div>
       </form>
     </Card>
-  </motion.div>
+  </div>
 );
 
 export default UpdateProfileForm;

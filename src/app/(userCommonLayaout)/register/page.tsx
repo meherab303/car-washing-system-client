@@ -4,13 +4,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Input, Button, Card, CardBody } from "@nextui-org/react";
-import { motion } from "framer-motion";
 import Link from "next/link";
 
 import { registerSchema } from "@/src/schemas/register.schemas";
-import { useUserRegistration } from "@/src/hooks/auth.hook"; // Using mutation hook
+import { useUserRegistration } from "@/src/hooks/auth.hook";
 
-// Define validation schema
 type RegisterFormData = z.infer<typeof registerSchema>;
 
 const RegisterPage = () => {
@@ -23,20 +21,13 @@ const RegisterPage = () => {
     resolver: zodResolver(registerSchema),
   });
 
-  // TanStack Query Mutation for user registration
   const { mutate: handleUserRegistration, isPending } = useUserRegistration();
 
-  // Submit Handler
   const onSubmit = (data: RegisterFormData) => {
     const userData = { ...data, role: "user" };
-
     handleUserRegistration(userData);
     reset();
   };
-
-  if (isPending) {
-    <p>loading...</p>;
-  }
 
   return (
     <div
@@ -46,12 +37,7 @@ const RegisterPage = () => {
           "linear-gradient(90deg, rgba(0, 0, 0, 0.7), transparent), url('/carwash.jpg')",
       }}
     >
-      <motion.div
-        animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-md"
-        initial={{ opacity: 0, y: -20 }}
-        transition={{ duration: 0.5 }}
-      >
+      <div className="w-full max-w-md">
         <Card className="shadow-2xl bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
           <CardBody>
             <h2 className="text-3xl font-bold text-white text-center mb-6">
@@ -145,11 +131,8 @@ const RegisterPage = () => {
                 )}
               </div>
 
-              {/* Submit Button with Animation */}
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
+              {/* Submit Button */}
+              <div>
                 <Button
                   className="w-full font-semibold bg-blue-600 hover:bg-blue-700 transition-all duration-300 text-white py-3 rounded-lg"
                   color="primary"
@@ -158,7 +141,7 @@ const RegisterPage = () => {
                 >
                   {isPending || isSubmitting ? "Registering..." : "Sign Up"}
                 </Button>
-              </motion.div>
+              </div>
             </form>
 
             <p className="text-white text-center mt-4 text-sm">
@@ -169,7 +152,7 @@ const RegisterPage = () => {
             </p>
           </CardBody>
         </Card>
-      </motion.div>
+      </div>
     </div>
   );
 };
